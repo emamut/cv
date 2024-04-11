@@ -249,35 +249,40 @@
       "isActive": true,
       "description": "Sitio web creado para el vitralista ecuatoriano Wilson Ramírez. Este sitio se posiciona en el top de busquedas de Google",
       "highlights": ["Wordpress", "Top en Google"],
-      "url": "https://vitralesquitoecuador.com/"
+      "url": "https://vitralesquitoecuador.com/",
+      "github": ""
     },
     {
       "name": "C&C Abogados",
       "isActive": true,
       "description": "Sitio web elaborado para el buffet de abogados C&C Abogados",
       "highlights": ["Wordpress"],
-      "url": "https://ccabogadosec.com/"
+      "url": "https://ccabogadosec.com/",
+      "github": ""
     },
     {
       "name": "Carrera de exportaciones",
       "isActive": true,
       "description": "Especial interactivo realizado para Grupo El Comercio de Ecuador en el año 2014 dónde comparamos las exportaciones entre el camarón y el banano",
       "highlights": ["Javascript", "CSS"],
-      "url": "https://especiales.elcomercio.com/2014/10/carrera/"
+      "url": "https://especiales.elcomercio.com/2014/10/carrera/",
+      "github": ""
     },
     {
       "name": "Ranking de las mejores y peores gasolineras del país",
       "isActive": false,
       "description": "Especial interactivo realizado para Grupo El Comercio de Ecuador en el año 2015 dónde geolocalizamos las gasolineras con una calificación a lo largo del país",
       "highlights": ["Javascript", "Leaflet"],
-      "url": "https://especiales.elcomercio.com/2015/10/gasolineras/"
+      "url": "https://especiales.elcomercio.com/2015/10/gasolineras/",
+      "github": ""
     },
     {
       "name": "Tu bebé en la portada de Familia",
       "isActive": true,
       "description": "Especial interactivo realizado para Grupo El Comercio de Ecuador en el año 2015 dónde los usuarios subían una foto de sus hijos y luego votaban por su favorita",
       "highlights": ["Javascript", "CSS"],
-      "url": "https://especiales.elcomercio.com/2018/10/concurso-familia-bebes-portada/"
+      "url": "https://especiales.elcomercio.com/2018/10/concurso-familia-bebes-portada/",
+      "github": ""
     }
   ]
 }

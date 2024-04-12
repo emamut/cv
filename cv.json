@@ -68,6 +68,33 @@
       "endDate": "2017-11-01",
       "summary": "",
       "highlights": ["Wordpress"]
+    },
+    {
+      "name": "HURIDOCS (Human Rights Information and Documentation Systems) - Suiza",
+      "position": "Web Developer",
+      "url": "https://huridocs.org/",
+      "startDate": "2016-10-01",
+      "endDate": "2017-11-01",
+      "summary": "",
+      "highlights": ["Wordpress"]
+    },
+    {
+      "name": "Grupo El Comercio - Ecuador",
+      "position": "Front End Developer",
+      "url": "https://www.elcomercio.com/",
+      "startDate": "2014-10-01",
+      "endDate": "2016-08-01",
+      "summary": "",
+      "highlights": ["Team leader"]
+    },
+    {
+      "name": "Klein Tours",
+      "position": "Web Developer",
+      "url": "https://www.gogalapagos.com/",
+      "startDate": "2014-01-01",
+      "endDate": "2014-10-01",
+      "summary": "",
+      "highlights": ["Fullstack developer"]
     }
   ],
   "volunteer": [

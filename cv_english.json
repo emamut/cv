@@ -1,63 +1,100 @@
 {
   "basics": {
-    "name": "Miguel Ángel Durán",
-    "label": "Full-Stack developer with more than 15 years of experience & development content creator",
+    "name": "Faber Andrés Vergara Holguín",
+    "label": "Front End Developer + Speaker",
     "image": "",
-    "email": "miduga@gmail.com",
-    "phone": "+34 688888888",
+    "email": "fabervergara@gmail.com",
+    "phone": "+57 3160414585",
     "url": "https://midu.dev",
-    "summary": "+15 years of experience as a web developer. Currently I am a content creator and development dommunicator. I live in Barcelona, Spain. I have worked in different environments: from accelerating the development of start-ups to leading teams in multinational companies.",
+    "summary": "I have been passionate about programming since I was 17, when I entered college. I started my journey with Pascal and Borland C++. During my work in healthcare, I continued to research and learn ways to automate processes in my work environment. I first used MS Excel and then MS Access. At the age of 26, I had the pleasure of learning PHP, a language that completely captivated me. Finally, at the age of 30, I was able to work in the IT field, alternating between programming and online community management. I have always been interested in finding ways to improve the development industry.",
     "location": {
       "address": "",
       "postalCode": "08820",
-      "city": "el Prat de Llobregat",
-      "countryCode": "ES",
-      "region": "Spain"
+      "city": "Bogotá",
+      "countryCode": "CO",
+      "region": "Colombia"
     },
     "profiles": [
       {
         "network": "LinkedIn",
-        "username": "midudev",
-        "url": "https://linkedin.com/in/midudev"
+        "username": "emamut",
+        "url": "https://linkedin.com/in/emamut"
       },
       {
         "network": "X",
-        "username": "midudev",
-        "url": "https://x.com/midudev"
+        "username": "e_mamut",
+        "url": "https://x.com/e_mamut"
       },
       {
         "network": "GitHub",
-        "username": "midudev",
-        "url": "https://github.com/midudev"
+        "username": "emamut",
+        "url": "https://github.com/emamut"
       }
     ]
   },
   "work": [
     {
-      "name": "midudev",
-      "position": "Web programming communicator",
-      "url": "https://twitch.tv/midudev",
-      "startDate": "2021-01-01",
+      "name": "emamut",
+      "position": "Freelancer",
+      "url": "",
+      "startDate": "2012-10-01",
       "endDate": null,
-      "summary": "Most watched development streamer in Spanish on Twitch. +1 million followers across all my social networks. Recognised by Google, Microsoft and GitHub for my impact on the development community.",
+      "summary": "",
       "highlights": ["Started the company"]
     },
     {
-      "name": "Adevinta",
-      "position": "Lead Frontend Architect",
-      "url": "https://twitch.tv/midudev",
-      "startDate": "2016-06-01",
-      "endDate": "2022-09-01",
-      "summary": "I led a technical convergence between different products and migrated from a monolithic architecture to a more flexible and optimised one. I fostered best practices and performance culture improvements, as well as rapid delivery of value to users.",
-      "highlights": ["Started the company"]
+      "name": "Simian S.A.S",
+      "position": "Wordpress Fullstack Developer",
+      "url": "https://simian.co/",
+      "startDate": "2023-07-01",
+      "endDate": "2024-10-22",
+      "summary": "",
+      "highlights": ["Wordpress, Docker, AWS"]
     },
     {
-      "name": "Hubii",
-      "position": "Senior FrontEnd Developer",
-      "startDate": "2011-03-01",
-      "endDate": "2016-05-01",
-      "summary": "I developed a geolocated news platform and an API to consume the information. Scaled services to support the load of over hundreds of thousands of requests per day. Cut delivery times and deployments to production by half. Collaborated with Mozilla and Telefónica to develop the first FirefoxOS TV app.",
-      "highlights": ["Started the company"]
+      "name": "Grupo El Comercio - Ecuador",
+      "position": "Front End Developer",
+      "url": "https://www.elcomercio.com/",
+      "startDate": "2018-08-01",
+      "endDate": "2023-07-01",
+      "summary": "",
+      "highlights": ["Team leader"]
+    },
+    {
+      "name": "HURIDOCS (Human Rights Information and Documentation Systems) - Suiza",
+      "position": "Web Developer",
+      "url": "https://huridocs.org/",
+      "startDate": "2016-10-01",
+      "endDate": "2017-11-01",
+      "summary": "",
+      "highlights": ["Wordpress"]
+    },
+    {
+      "name": "Grupo El Comercio - Ecuador",
+      "position": "Front End Developer",
+      "url": "https://www.elcomercio.com/",
+      "startDate": "2014-10-01",
+      "endDate": "2016-08-01",
+      "summary": "",
+      "highlights": ["Team leader"]
+    },
+    {
+      "name": "Klein Tours",
+      "position": "Web Developer",
+      "url": "https://www.gogalapagos.com/",
+      "startDate": "2014-01-31",
+      "endDate": "2014-10-01",
+      "summary": "",
+      "highlights": ["Fullstack developer"]
+    },
+    {
+      "name": "Aureole S.A",
+      "position": "Web Developer",
+      "url": "https://www.aureole.com.ec/",
+      "startDate": "2013-10-01",
+      "endDate": "2014-01-31",
+      "summary": "",
+      "highlights": ["Fullstack developer"]
     }
   ],
   "volunteer": [
@@ -73,12 +110,12 @@
   ],
   "education": [
     {
-      "institution": "Universitat Oberta de Catalunya",
-      "url": "https://www.uoc.edu/portal/es/index.html",
-      "area": "Software Engineer",
+      "institution": "Universidal del Valle - Sede Buga",
+      "url": "https://buga.univalle.edu.co/",
+      "area": "Tecnología en Sistemas de Información",
       "studyType": "Bachelor",
-      "startDate": "2003-01-01",
-      "endDate": "2009-01-01",
+      "startDate": "1998-01-01",
+      "endDate": "2002-01-01",
       "score": "4.0",
       "courses": ["DB1101 - Basic SQL"]
     }
@@ -112,33 +149,38 @@
     {
       "name": "HTML",
       "level": "Master",
-      "keywords": ["Web development", "Frontend"]
+      "keywords": ["Desarrollo Web", "Frontend"]
     },
     {
       "name": "CSS",
       "level": "Master",
-      "keywords": ["Web development", "Frontend", "Diseño Responsive"]
+      "keywords": ["Desarrollo Web", "Frontend", "Diseño Responsive"]
     },
     {
-      "name": "JavaScript",
-      "level": "Master",
-      "keywords": ["Web development", "Frontend", "Backend", "Fullstack"]
+      "name": "SASS",
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "Tailwind",
-      "level": "Advanced",
+      "level": "Avanzado",
       "keywords": [
-        "Web development",
+        "Desarrollo Web",
         "Frontend",
         "CSS Framework",
         "Diseño Responsive"
       ]
     },
     {
+      "name": "JavaScript",
+      "level": "Master",
+      "keywords": ["Desarrollo Web", "Frontend", "Backend", "Fullstack"]
+    },
+    {
       "name": "TypeScript",
-      "level": "Advanced",
+      "level": "Avanzado",
       "keywords": [
-        "Web development",
+        "Desarrollo Web",
         "Frontend",
         "Backend",
         "JavaScript Superset"
@@ -146,29 +188,14 @@
     },
     {
       "name": "Node",
-      "level": "Advanced",
-      "keywords": ["Web development", "Backend", "JavaScript", "Servidor"]
-    },
-    {
-      "name": "MySQL",
-      "level": "Advanced",
-      "keywords": ["Bases de Datos", "SQL", "Database", "Backend"]
-    },
-    {
-      "name": "Git",
-      "level": "Advanced",
-      "keywords": ["Version control", "Colaboración", "Source code"]
-    },
-    {
-      "name": "GitHub",
-      "level": "Advanced",
-      "keywords": ["Version control", "Collaboration", "Source code", "Git"]
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Backend", "JavaScript", "Servidor"]
     },
     {
       "name": "Next.js",
-      "level": "Advanced",
+      "level": "Avanzado",
       "keywords": [
-        "Web development",
+        "Desarrollo Web",
         "Frontend",
         "React Framework",
         "SSR",
@@ -177,8 +204,48 @@
     },
     {
       "name": "React",
-      "level": "Advanced",
-      "keywords": ["Web development", "Frontend", "JavaScript Library", "UI"]
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "Vue",
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "MySQL",
+      "level": "Avanzado",
+      "keywords": [
+        "Bases de Datos",
+        "SQL",
+        "Almacenamiento de Datos",
+        "Backend"
+      ]
+    },
+    {
+      "name": "Git",
+      "level": "Avanzado",
+      "keywords": ["Control de Versiones", "Colaboración", "Código Fuente"]
+    },
+    {
+      "name": "GitHub",
+      "level": "Avanzado",
+      "keywords": [
+        "Control de Versiones",
+        "Colaboración",
+        "Código Fuente",
+        "Git"
+      ]
+    },
+    {
+      "name": "PHP",
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "Wordpress",
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }
   ],
   "languages": [
@@ -205,51 +272,44 @@
   ],
   "projects": [
     {
-      "name": "mars.codes",
+      "name": "Vitrales Quito Ecuador",
       "isActive": true,
-      "description": "Interactive story with programming challenges to travel to Mars",
-      "highlights": ["Choose your own adventure", "In progress"],
-      "url": "https://mars.codes"
+      "description": "Website created for the ecuadorian stained glass artist Wilson Ramirez. This site is positioned in the top of Google searches.",
+      "highlights": ["Wordpress", "Top in Google"],
+      "url": "https://vitralesquitoecuador.com/",
+      "github": ""
     },
     {
-      "name": "AdventJS",
+      "name": "C&C Abogados",
       "isActive": true,
-      "description": "JavaScript programming challenges for every day of December until Christmas",
-      "highlights": [
-        "+1 million visits",
-        "Multilanguage",
-        "JavaScript & TypeScript"
-      ],
-      "url": "https://advent.js/dev"
+      "description": "Website developed for the law firm C&C Abogados",
+      "highlights": ["Wordpress", "Figma"],
+      "url": "https://ccabogadosec.com/",
+      "github": ""
     },
     {
-      "name": "Codember",
+      "name": "Carrera de exportaciones",
       "isActive": true,
-      "description": "Interactive programming game with challenges and secrets",
-      "highlights": ["+2000 active users", "Challenges for any language"],
-      "url": "https://codember.dev"
+      "description": "Special interactive report made for Grupo El Comercio of Ecuador in 2014 where we compared exports between shrimp and bananas.",
+      "highlights": ["Javascript", "CSS"],
+      "url": "https://especiales.elcomercio.com/2014/10/carrera/",
+      "github": ""
     },
     {
-      "name": "codi.link",
-      "isActive": true,
-      "description": "Playground of HTML, CSS and JavaScript code for sharing",
-      "highlights": ["100k monthly visit", "Developed by the community"],
-      "url": "https://codi.link",
-      "github": "https://github.com/midudev/codi.link"
+      "name": "Ranking de las mejores y peores gasolineras del país",
+      "isActive": false,
+      "description": "Special interactive report made for Grupo El Comercio of Ecuador in 2015 where we geolocate gas stations with a rating throughout the country.",
+      "highlights": ["Javascript", "Leaflet"],
+      "url": "https://especiales.elcomercio.com/2015/10/gasolineras/",
+      "github": ""
     },
     {
-      "name": "Pruebas Técnicas",
+      "name": "Tu bebé en la portada de Familia",
       "isActive": true,
-      "description": "List of technical tests of companies to practice programming",
-      "highlights": ["100% free", "+500 community solutions"],
-      "url": "https://pruebastecnicas.com",
-      "github": "https://github.com/midudev/pruebas-tecnicas"
-    },
-    {
-      "name": "miduConf",
-      "description": "Streaming programming conference for the Spanish-speaking community with top talks",
-      "highlights": ["+15k tickets handed over", "+50k live viewers"],
-      "url": "https://miduconf.com"
+      "description": "Interactive special made for Grupo El Comercio of Ecuador in 2015 where users uploaded a photo of their children and then voted for their favorite.",
+      "highlights": ["Javascript", "CSS"],
+      "url": "https://especiales.elcomercio.com/2018/10/concurso-familia-bebes-portada/",
+      "github": ""
     }
   ]
 }

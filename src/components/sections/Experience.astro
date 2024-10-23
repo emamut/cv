@@ -1,12 +1,12 @@
 ---
 import Section from "../Section.astro"
 
-import { work } from "@cv"
+import { work } from "@cvEn"
 
-const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 ---
 
-<Section title="Experiencia laboral">
+<Section title="Experience">
   <ul>
     {
       work.map(
@@ -14,7 +14,7 @@ const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', '
           const startMonth = new Date(startDate).getMonth() + 1
           const startYear = new Date(startDate).getFullYear()
 
-          let endDateFinal = 'Actual'
+          let endDateFinal = 'Current'
           if(endDate != null){
             endDateFinal = months[new Date(endDate).getMonth() + 1]
             endDateFinal += ' ' + new Date(endDate).getFullYear()
@@ -27,7 +27,7 @@ const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', '
                 <header>
                   <div>
                     <h3>
-                      <a href={url} title={`Ver ${name}`} target="_blank">
+                      <a href={url} title={`See ${name}`} target="_blank">
                         {name}
                       </a>
                     </h3>

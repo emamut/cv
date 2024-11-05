@@ -38,18 +38,9 @@
       "position": "Wordpress Fullstack Developer",
       "url": "https://simian.co/",
       "startDate": "2023-07-01",
-      "endDate": null,
+      "endDate": "2024-10-22",
       "summary": "",
-      "highlights": ["Wordpress, Docker"]
-    },
-    {
-      "name": "emamut",
-      "position": "Freelancer",
-      "url": "",
-      "startDate": "2012-10-01",
-      "endDate": null,
-      "summary": "",
-      "highlights": ["Started the company"]
+      "highlights": ["Wordpress, Docker, AWS"]
     },
     {
       "name": "Grupo El Comercio - Ecuador",
@@ -110,7 +101,7 @@
   ],
   "education": [
     {
-      "institution": "Universidal del Valle - Sede Buga",
+      "institution": "Universidad del Valle - Sede Buga",
       "url": "https://buga.univalle.edu.co/",
       "area": "Tecnología en Sistemas de Información",
       "studyType": "Bachelor",

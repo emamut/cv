@@ -6,14 +6,7 @@
     "email": "fabervergara@gmail.com",
     "phone": "+57 3160414585",
     "url": "https://midu.dev",
-    "summary": [
-      "I have been passionate about programming since I was 17, when I entered college. I started my journey with Pascal and Borland C++.",
-      "During my work in healthcare, I continued to research and learn ways to automate processes in my work environment. I first used MS Excel and then MS Access.",
-      "At the age of 26, I had the pleasure of learning PHP, a language that completely captivated me.",
-      "Finally, at the age of 30, I was able to work in the IT field, alternating between programming and online community management.",
-      "I have always been interested in finding ways to improve the development industry."
-    ],
-    "description": "I have been passionate about programming since I was 17, when I entered college. I started my journey with Pascal and Borland C++. During my work in healthcare, I continued to research and learn ways to automate processes in my work environment. I first used MS Excel and then MS Access. At the age of 26, I had the pleasure of learning PHP, a language that completely captivated me. Finally, at the age of 30, I was able to work in the IT field, alternating between programming and online community management. I have always been interested in finding ways to improve the development industry.",
+    "summary": "Desarrollador web apasionado con más de una década de experiencia, especializado en tecnologías front-end como Wordpress, React, Vue.js, SASS y Leaflet. Con un enfoque en la automatización y la eficiencia, he trabajado en sectores diversos, incluyendo la salud, utilizando herramientas como MS Excel y Access. Mi dedicación a la innovación y la excelencia me impulsa a mejorar continuamente la industria del desarrollo.",
     "location": {
       "address": "",
       "postalCode": "08820",
@@ -242,6 +235,11 @@
     },
     {
       "name": "Wordpress",
+      "level": "Avanzado",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "AWS",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }

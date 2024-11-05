@@ -1,13 +1,13 @@
 ---
 import Section from "../Section.astro"
 
-import { education } from "@cv"
+import { education } from "@cvEn"
 ---
 
 <Section title="Education">
   <ul>
     {
-      education.map(({ institution, startDate, endDate, area }) => {
+      education.map(({ institution, startDate, endDate, area, url }) => {
         const startYear = new Date(startDate).getFullYear()
         const endYear =
           endDate != null ? new Date(endDate).getFullYear() : "Actual"
@@ -18,7 +18,10 @@ import { education } from "@cv"
             <article>
               <header>
                 <div>
-                  <h3>{institution}</h3>
+                  <h3>
+                    <a href={url} title={`See ${institution}`} target="_blank">
+                    {institution}
+                    </a></h3>
                 </div>
 
                 <time>{years}</time>

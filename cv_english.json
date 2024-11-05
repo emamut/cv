@@ -6,7 +6,13 @@
     "email": "fabervergara@gmail.com",
     "phone": "+57 3160414585",
     "url": "https://midu.dev",
-    "summary": "I have been passionate about programming since I was 17, when I entered college. I started my journey with Pascal and Borland C++. During my work in healthcare, I continued to research and learn ways to automate processes in my work environment. I first used MS Excel and then MS Access. At the age of 26, I had the pleasure of learning PHP, a language that completely captivated me. Finally, at the age of 30, I was able to work in the IT field, alternating between programming and online community management. I have always been interested in finding ways to improve the development industry.",
+    "summary": [
+      "I have been passionate about programming since I was 17, when I entered college. I started my journey with Pascal and Borland C++.",
+      "During my work in healthcare, I continued to research and learn ways to automate processes in my work environment. I first used MS Excel and then MS Access.",
+      "At the age of 26, I had the pleasure of learning PHP, a language that completely captivated me.",
+      "Finally, at the age of 30, I was able to work in the IT field, alternating between programming and online community management.",
+      "I have always been interested in finding ways to improve the development industry."
+    ],
     "location": {
       "address": "",
       "postalCode": "08820",
@@ -33,15 +39,6 @@
     ]
   },
   "work": [
-    {
-      "name": "emamut",
-      "position": "Freelancer",
-      "url": "",
-      "startDate": "2012-10-01",
-      "endDate": null,
-      "summary": "",
-      "highlights": ["Started the company"]
-    },
     {
       "name": "Simian S.A.S",
       "position": "Wordpress Fullstack Developer",
@@ -110,7 +107,27 @@
   ],
   "education": [
     {
-      "institution": "Universidal del Valle - Sede Buga",
+      "institution": "Colsubsidio - Cymetria",
+      "url": "https://cymetria.com/",
+      "area": "Arquitectura de Soluciones AWS",
+      "studyType": "Bachelor",
+      "startDate": "2024-01-01",
+      "endDate": "2024-02-28",
+      "score": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    },
+    {
+      "institution": "Servicio Nacional de Aprendizaje - SENA",
+      "url": "https://www.sena.edu.co/",
+      "area": "Curso de Photoshop",
+      "studyType": "Bachelor",
+      "startDate": "2012-01-01",
+      "endDate": "2012-02-28",
+      "score": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    },
+    {
+      "institution": "Universidad del Valle - Sede Buga",
       "url": "https://buga.univalle.edu.co/",
       "area": "Tecnología en Sistemas de Información",
       "studyType": "Bachelor",

@@ -3,8 +3,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://emamut.github.io/',
-  base: 'github.com/emamut/cv',
+  site: 'https://emamut.vercel.app/',
   integrations: [
     partytown({
       config: {

@@ -21,6 +21,9 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
           }
           const years = `${months[startMonth]} ${startYear} - ${endDateFinal}`
 
+          // Asegúrate de que summary sea un array
+          const summaryArray = Array.isArray(summary) ? summary : []
+
           return (
             <li>
               <article>
@@ -38,7 +41,11 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                 </header>
 
                 <footer>
-                  <p>{summary}</p>
+                  <ul>
+                  {summaryArray.map(summaryItem => (
+                    <li>{summaryItem}</li>
+                  ))}
+                  </ul>
                 </footer>
               </article>
             </li>
@@ -54,6 +61,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
     display: flex;
     flex-direction: column;
     gap: 32px;
+    font-size: ;
   }
 
   article h3 {
@@ -85,6 +93,24 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
     color: #555;
     font-size: 0.85rem;
     min-width: 102px;
+  }
+
+  footer {
+    margin-top: 1rem;
+  }
+
+  footer ul {
+    display: ruby;
+    list-style-type: none;
+  }
+
+  footer li {
+    font-size: 14px;
+  }
+
+  footer li:not(:last-child)::after {
+    content: "•";
+    margin-right: 0.5rem;
   }
 
   @media (width <= 700px) {

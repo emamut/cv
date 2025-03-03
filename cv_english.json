@@ -5,7 +5,7 @@
     "image": "",
     "email": "fabervergara@gmail.com",
     "phone": "+57 3160414585",
-    "url": "https://midu.dev",
+    "url": "https://emamut.vercel.app/",
     "summary": "Passionate web developer with over a decade of experience, specializing in front-end technologies such as Wordpress, React, Vue.js, SASS and Leaflet. With a focus on automation and efficiency, I have worked in diverse industries, including healthcare, using tools such as MS Excel and Access. My dedication to innovation and excellence drives me to continuously improve the development industry.",
     "location": {
       "address": "",
@@ -39,7 +39,12 @@
       "url": "https://simian.co/",
       "startDate": "2023-07-01",
       "endDate": "2024-10-22",
-      "summary": "",
+      "summary": [
+        "Diagnose and solve problems in the websites managed by the company, including Universidad Externado de Colombia, Davidaclub, Salud Total, among others",
+        "Perform maintenance and update plugins in the sites assigned to the company.",
+        "Develop and implement new functionalities in the managed websites.",
+        "Adjust and optimize plugins, including BuddyPress, to adapt them to the client's needs."
+      ],
       "highlights": ["Wordpress, Docker, AWS"]
     },
     {
@@ -48,7 +53,11 @@
       "url": "https://www.elcomercio.com/",
       "startDate": "2018-08-01",
       "endDate": "2023-07-01",
-      "summary": "",
+      "summary": [
+        "Development and maintenance of websites for specialized journalistic projects and specific needs.",
+        "Redesign of digital platforms in Wordpress for key initiatives, such as the Subscribers Club.",
+        "Lead the Web Design team for approximately 8 months, managing a team of three developers and two designers."
+      ],
       "highlights": ["Team leader"]
     },
     {
@@ -57,7 +66,11 @@
       "url": "https://huridocs.org/",
       "startDate": "2016-10-01",
       "endDate": "2017-11-01",
-      "summary": "",
+      "summary": [
+        "Ongoing maintenance of OpenEvSys, RightDocs, and CaseBox services.",
+        "Regular upkeep and support for WordPress websites.",
+        "Ongoing maintenance of OpenEvSys, RightDocs, and CaseBox services. - Regular upkeep and support for WordPress websites."
+      ],
       "highlights": ["Wordpress"]
     },
     {
@@ -66,7 +79,11 @@
       "url": "https://www.elcomercio.com/",
       "startDate": "2014-10-01",
       "endDate": "2016-08-01",
-      "summary": "",
+      "summary": [
+        "Development and maintenance of websites for specialized journalistic projects and specific needs.",
+        "Redesign of digital platforms in Wordpress for key initiatives, such as the Subscribers Club.",
+        "Training in web development and management tools, including Bootstrap and Sublime Text, to ensure efficient project management."
+      ],
       "highlights": ["Team leader"]
     },
     {
@@ -75,7 +92,11 @@
       "url": "https://www.gogalapagos.com/",
       "startDate": "2014-01-31",
       "endDate": "2014-10-01",
-      "summary": "",
+      "summary": [
+        "Ongoing maintenance of the Partners News website (www.ktpartners.com).",
+        "Support and maintenance of internal applications (www.ktpartners.com/intranet and www.kleinapplications.com).",
+        "Database administration and execution of advanced queries in T-SQL."
+      ],
       "highlights": ["Fullstack developer"]
     },
     {
@@ -84,7 +105,9 @@
       "url": "https://www.aureole.com.ec/",
       "startDate": "2013-10-01",
       "endDate": "2014-01-31",
-      "summary": "",
+      "summary": [
+        "Enhancements and optimizations in the application built with CodeIgniter, Backbone, and MySQL"
+      ],
       "highlights": ["Fullstack developer"]
     }
   ],

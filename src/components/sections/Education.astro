@@ -1,10 +1,10 @@
 ---
 import Section from "../Section.astro"
 
-const { education } = Astro.props
+const { education, title } = Astro.props
 ---
 
-<Section title="Education">
+<Section title={title}>
   <ul>
     {
       education.map(({

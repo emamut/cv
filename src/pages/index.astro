@@ -16,11 +16,11 @@ const { name, label } = basics
 <Layout title={`Portfolio of ${name} - ${label}`}>
   <main>
     <Hero basics={basics} />
-    <About summary={basics.summary} />
-    <Experience work={work} />
-    <Education education={education} />
-    <Projects projects={projects} />
-    <Skills skills={skills} />
+    <About summary={basics.summary} title="About me" />
+    <Experience work={work} title="Experience" />
+    <Education education={education} title="Education" />
+    <Projects projects={projects} title="Projects" />
+    <Skills skills={skills} title="Skills" />
   </main>
 
   <KeyboardManager />

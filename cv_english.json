@@ -17,16 +17,19 @@
     "profiles": [
       {
         "network": "LinkedIn",
+        "icon": "linkedin",
         "username": "emamut",
         "url": "https://linkedin.com/in/emamut"
       },
       {
         "network": "X",
+        "icon": "x-twitter",
         "username": "e_mamut",
         "url": "https://x.com/e_mamut"
       },
       {
         "network": "GitHub",
+        "icon": "github",
         "username": "emamut",
         "url": "https://github.com/emamut"
       }
@@ -182,21 +185,25 @@
   "skills": [
     {
       "name": "HTML",
+      "icon": "html5",
       "level": "Master",
       "keywords": ["Desarrollo Web", "Frontend"]
     },
     {
       "name": "CSS",
+      "icon": "css3",
       "level": "Master",
       "keywords": ["Desarrollo Web", "Frontend", "Diseño Responsive"]
     },
     {
       "name": "SASS",
+      "icon": "sass",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "Tailwind",
+      "icon": "font-awesome",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -207,11 +214,13 @@
     },
     {
       "name": "JavaScript",
+      "icon": "js",
       "level": "Master",
       "keywords": ["Desarrollo Web", "Frontend", "Backend", "Fullstack"]
     },
     {
       "name": "TypeScript",
+      "icon": "font-awesome",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -222,11 +231,13 @@
     },
     {
       "name": "Node",
+      "icon": "node-js",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Backend", "JavaScript", "Servidor"]
     },
     {
       "name": "Next.js",
+      "icon": "font-awesome",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -238,16 +249,19 @@
     },
     {
       "name": "React",
+      "icon": "react",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "Vue",
+      "icon": "vuejs",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "MySQL",
+      "icon": "font-awesome",
       "level": "Avanzado",
       "keywords": [
         "Bases de Datos",
@@ -258,11 +272,13 @@
     },
     {
       "name": "Git",
+      "icon": "git",
       "level": "Avanzado",
       "keywords": ["Control de Versiones", "Colaboración", "Código Fuente"]
     },
     {
       "name": "GitHub",
+      "icon": "github",
       "level": "Avanzado",
       "keywords": [
         "Control de Versiones",
@@ -273,16 +289,19 @@
     },
     {
       "name": "PHP",
+      "icon": "php",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "Wordpress",
+      "icon": "wordpress",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "AWS",
+      "icon": "aws",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }

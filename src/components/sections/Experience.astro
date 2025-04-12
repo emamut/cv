@@ -1,7 +1,7 @@
 ---
-import Section from "../Section.astro"
+import Section from "../Section.astro";
 
-import { work } from "@cvEn"
+const { work } = Astro.props;
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 ---
@@ -10,7 +10,20 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
   <ul>
     {
       work.map(
-        ({ name, startDate, endDate, position, summary, highlights, url }) => {
+        ({ name,
+          startDate,
+          endDate,
+          position,
+          summary,
+          url
+        } :{
+          name: string;
+          startDate: string;
+          endDate: string;
+          position: string;
+          summary: string | string[];
+          url: string;
+        }) => {
           const startMonth = new Date(startDate).getMonth() + 1
           const startYear = new Date(startDate).getFullYear()
 
@@ -21,7 +34,6 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
           }
           const years = `${months[startMonth]} ${startYear} - ${endDateFinal}`
 
-          // Asegúrate de que summary sea un array
           const summaryArray = Array.isArray(summary) ? summary : []
 
           return (

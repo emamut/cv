@@ -9,18 +9,18 @@ import Projects from "@/components/sections/Projects.astro"
 import Skills from "@/components/sections/Skills.astro"
 import KeyboardManager from "@/components/KeyboardManager.astro"
 
-import { basics } from "@cvEn"
+import { basics, work, education, projects, skills } from "@cvEn"
 const { name, label } = basics
 ---
 
 <Layout title={`Portfolio of ${name} - ${label}`}>
   <main>
-    <Hero />
-    <About />
-    <Experience />
-    <Education />
-    <Projects />
-    <Skills />
+    <Hero basics={basics} />
+    <About summary={basics.summary} />
+    <Experience work={work} />
+    <Education education={education} />
+    <Projects projects={projects} />
+    <Skills skills={skills} />
   </main>
 
   <KeyboardManager />

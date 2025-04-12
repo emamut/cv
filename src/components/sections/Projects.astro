@@ -1,15 +1,28 @@
 ---
-import GitHub from "@/icons/GitHub.astro"
 import Section from "../Section.astro"
 
-import { projects } from "@cvEn"
+const { projects } = Astro.props
 ---
 
 <Section title="Projects">
   <ul>
     {
       projects.map(
-        ({ url, description, highlights, name, isActive, github }) => {
+        ({
+          url,
+          description,
+          highlights,
+          name,
+          isActive,
+          github
+        } : {
+          url: string
+          description: string
+          highlights: string[]
+          name: string
+          isActive: boolean
+          github?: string
+        }) => {
           return (
             <li>
               <article>
@@ -26,7 +39,7 @@ import { projects } from "@cvEn"
                         target="_blank"
                         title={`View project source code ${name}`}
                       >
-                        <GitHub />
+                        <i class="fa-brands fa-github"></i>
                       </a>
                     )}
                   </h3>

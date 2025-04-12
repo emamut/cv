@@ -1,104 +1,26 @@
+# Curriculum Vitae
 
+Este proyecto contiene mi currículum vitae en formato Markdown. Aquí encontrarás información sobre mi experiencia profesional, educación, habilidades y proyectos destacados.
 
-<div align="center">
-<img src="logo.png" height="90px" width="auto" /> 
-<h2>
-    <em>Résumé</em> minimalista maquetado para web y pdf
-</h2>
-<p>
-Esquema del JSON de CV de <a href="https://jsonresume.org/schema/">jsonresume.org</a>
-</p>
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/emamut)
 
+## Estructura del Proyecto
 
-<p>
-Basado en el diseño de <a href="https://github.com/BartoszJarocki/cv">Bartosz Jarocki</a>
+- `README.md`: Este archivo, que describe el propósito del proyecto.
+- `cv.md`: Archivo principal con el contenido del currículum.
 
-</p>
+## Cómo Usar
 
-</div>
+1. Clona este repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/tu-usuario/cv.git
+   ```
+2. Abre el archivo `cv.md` para visualizar o editar el contenido.
 
-<div align="center">
-    <a href="#🚀-empezar">
-        Empezar
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🧞-comandos">
-        Comandos
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🔑-licencia">
-        Licencia
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="https://midu.dev">
-        Personal
-    </a>
-   
-</div>
+## Contribuciones
 
-<p></p>
+Si deseas contribuir a este proyecto, por favor abre un issue o envía un pull request.
 
-<div align="center">
+## Licencia
 
-![Astro Badge](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=fff&style=flat)
-![GitHub stars](https://img.shields.io/github/stars/midudev/minimalist-portfolio-json)
-![GitHub issues](https://img.shields.io/github/issues/midudev/minimalist-portfolio-json)
-![GitHub forks](https://img.shields.io/github/forks/midudev/minimalist-portfolio-json)
-![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/minimalist-portfolio-json)
-
-</div>
-
-<img src="portada.png"></img>
-
-## 🛠️ Stack
-
-- [**Astro**](https://astro.build/) - El framework web de la nueva época.
-- [**Typescript**](https://www.typescriptlang.org/) - JavaScript con sintaxis de tipado.
-- [**Ninja Keys**](https://github.com/ssleptsov/ninja-keys) - Menu desplegable con atajos de teclado hecho en puro Javascript.
-
-
-## 🚀 Empezar
-
-### 1. Usa este [repo](https://github.com/midudev/minimalist-portfolio-json) como _template_ de un proyecto de Astro
-
-
-- Yo uso [pnpm](https://pnpm.io/installation) como gestor de dependencias y empaquetador.
-
-```bash
-# Activa pnpm en MacOS, WSL & Linux:
-corepack enable
-corepack prepare pnpm@latest --activate
-
-# Inicializa el proyecto
-pnpm create astro@latest -- --template midudev/minimalist-portfolio-json
-```
-
-### 2. Añade tu contenido:
-Edita el archivo `cv.json` para crear tu propio Portafolio/CV imprimible.
-### 3. Lanza el servidor de desarrollo:
-
-```bash
-# Disfruta del resultado
-pnpm dev
-```
-
-
-1. Abre [**http://localhost:4321**](http://localhost:4321/) en tu navegador para ver el resultado 🚀
-
-
-## 🧞 Comandos
-
-|     | Comando          | Acción                                        |
-| :-- | :--------------- | :-------------------------------------------- |
-| ⚙️  | `dev` o `start` | Lanza un servidor de desarrollo local en  `localhost:4321`.  |
-| ⚙️  | `build`          | Comprueba posibles errores y hace un empaquetado de producción en `./dist/`.      |
-| ⚙️  | `preview`        | Vista previa en local `localhost:4321` |
-
-
-
-## 🔑 Licencia
-
-[MIT](LICENSE.txt) - Creado por [**midudev**](https://midu.dev).
-
-
-
+Este proyecto está bajo la licencia [MIT](LICENSE).

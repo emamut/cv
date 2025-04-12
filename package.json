@@ -12,7 +12,6 @@
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "@astrojs/partytown": "^2.1.4",
-    "@vercel/analytics": "^1.5.0",
     "astro": "4.3.2",
     "gravatar-url": "^4.0.1",
     "hotkeypad": "0.1.0",

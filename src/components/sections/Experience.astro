@@ -1,12 +1,12 @@
 ---
 import Section from "../Section.astro";
 
-const { work } = Astro.props;
+const { work, title } = Astro.props;
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 ---
 
-<Section title="Experience">
+<Section title={title}>
   <ul>
     {
       work.map(

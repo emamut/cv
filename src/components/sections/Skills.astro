@@ -10,7 +10,7 @@ const { skills, title } = Astro.props
       skills.map(({ name, icon } : {name: string; icon: string}) => {
         return (
           <li>
-            <i class={`fa-brands fa-${icon} fa-2x`}></i> <span>{name}</span>
+            <i class={`ti ti-brand-${icon} fa-2x`}></i> <span>{name}</span>
           </li>
         )
       })

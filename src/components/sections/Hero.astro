@@ -1,6 +1,7 @@
 ---
 import Section from "@/components/Section.astro"
 import gravatarUrl from 'gravatar-url';
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 import { Image } from "astro:assets"
 
 const { basics } = Astro.props;
@@ -18,7 +19,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
       <h1>{basics.name}</h1>
       <h2>{basics.label}</h2>
       <span>
-        <i class="fa-solid fa-globe"></i>
+        <i class="ti ti-world"></i>
         {basics.location.city}, {basics.location.region}
       </span>
       <footer class="print">
@@ -33,7 +34,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i class="fa-solid fa-envelope fa-2x"></i>
+              <i class="ti ti-mail"></i>
             </a>
           )
         }
@@ -45,7 +46,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i class="fa-solid fa-phone fa-2x"></i>
+              <i class="ti ti-phone"></i>
             </a>
           )
         }
@@ -58,7 +59,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i class={`fa-brands fa-${icon} fa-2x`}></i>
+                <i class=`ti ti-brand-${icon}`></i>
               </a>
             )
           })
@@ -119,6 +120,11 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
     gap: 0.25rem;
     font-size: 0.85rem;
     letter-spacing: -0.05rem;
+  }
+
+  i.ti {
+    color: #777;
+    font-size: 1.5rem;
   }
 
   footer {

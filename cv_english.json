@@ -23,7 +23,7 @@
       },
       {
         "network": "X",
-        "icon": "x-twitter",
+        "icon": "x",
         "username": "e_mamut",
         "url": "https://x.com/e_mamut"
       },
@@ -203,7 +203,7 @@
     },
     {
       "name": "Tailwind",
-      "icon": "font-awesome",
+      "icon": "tailwind",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -214,13 +214,13 @@
     },
     {
       "name": "JavaScript",
-      "icon": "js",
+      "icon": "javascript",
       "level": "Master",
       "keywords": ["Desarrollo Web", "Frontend", "Backend", "Fullstack"]
     },
     {
       "name": "TypeScript",
-      "icon": "font-awesome",
+      "icon": "typescript",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -231,13 +231,13 @@
     },
     {
       "name": "Node",
-      "icon": "node-js",
+      "icon": "nodejs",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Backend", "JavaScript", "Servidor"]
     },
     {
       "name": "Next.js",
-      "icon": "font-awesome",
+      "icon": "nextjs",
       "level": "Avanzado",
       "keywords": [
         "Desarrollo Web",
@@ -255,13 +255,13 @@
     },
     {
       "name": "Vue",
-      "icon": "vuejs",
+      "icon": "vue",
       "level": "Avanzado",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
       "name": "MySQL",
-      "icon": "font-awesome",
+      "icon": "mysql",
       "level": "Avanzado",
       "keywords": [
         "Bases de Datos",

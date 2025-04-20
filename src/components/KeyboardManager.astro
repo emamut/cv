@@ -8,16 +8,31 @@ import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 const { profiles } = basics
 const { lng } = Astro.props
 
+const translations = lng === 'eng'
+  ? {
+      title: "Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open the command palette.",
+      print: "Print",
+      visit: "Visit",
+      search: "Search command"
+    }
+  : {
+      title: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos.',
+      print: "Imprimir",
+      visit: "Visitar",
+      search: "Buscar comando"
+    }
+
 const profilesInfo = profiles.map(({ network, url, icon }) => {
   let firstLetter = network[0].toUpperCase()
 
   return {
     id: network,
     section: "Social",
-    title: `Visit ${network}`,
+    title: `${translations.visit} ${network}`,
     url,
     icon: `<i class="ti ti-brand-${icon}"></i>`,
-    hotkey: `ctrl+${firstLetter}`
+    hotkey: `ctrl+${firstLetter}`,
+    lng: lng,
   }
 })
 ---
@@ -33,7 +48,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
 
 <div
   id="hotkeypad"
-  data-placeholder="Search command"
+  data-placeholder={translations.search}
   data-info={JSON.stringify(profilesInfo)}
 >
 </div>
@@ -46,6 +61,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     url: string
     icon: string
     hotkey: string
+    lng: string
     handler?: () => void
   }
 

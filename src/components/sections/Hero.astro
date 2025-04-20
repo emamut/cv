@@ -1,8 +1,8 @@
 ---
-import Section from "@/components/Section.astro"
-import gravatarUrl from 'gravatar-url';
-import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 import { Image } from "astro:assets"
+import gravatarUrl from 'gravatar-url';
+import Section from "@/components/Section.astro"
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 const { basics } = Astro.props;
 const imageURL = gravatarUrl(basics.email, {size: 128});

@@ -4,10 +4,10 @@ import gravatarUrl from 'gravatar-url';
 import Section from "@/components/Section.astro"
 import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
-const { basics } = Astro.props;
+const { basics, profiles } = Astro.props;
 const imageURL = gravatarUrl(basics.email, {size: 128});
 
-const linkedInfo = basics.profiles.find(({ network }: { network: string; url: string; username: string }) => network === "LinkedIn")
+const linkedInfo = profiles.find(({ network }: { network: string; url: string; username: string; icon: string }) => network === "LinkedIn")
 const linkedUrl = linkedInfo?.url
 
 const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join(" • ")
@@ -20,7 +20,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
       <h2>{basics.label}</h2>
       <span>
         <i class="ti ti-world"></i>
-        {basics.location.city}, {basics.location.region}
+        {basics.city}, {basics.country}
       </span>
       <footer class="print">
         {printInfo}
@@ -51,7 +51,7 @@ const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join("
           )
         }
         {
-          basics.profiles.map(({ network, icon, url }: { network: string; icon: string; url: string }) => {
+          profiles.map(({ network, icon, url }: { network: string; name:string; icon: string; url: string }) => {
             return (
               <a
                 href={url}

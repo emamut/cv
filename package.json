@@ -14,12 +14,10 @@
     "@astrojs/partytown": "^2.1.4",
     "@tabler/icons-webfont": "^3.31.0",
     "astro": "4.3.2",
+    "graphql": "^16.10.0",
+    "graphql-request": "^7.1.2",
     "gravatar-url": "^4.0.1",
     "hotkeypad": "0.1.0",
     "typescript": "^5.8.3"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3",
-    "prettier-plugin-astro": "^0.14.1"
   }
 }

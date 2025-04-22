@@ -13,14 +13,14 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
         ({ name,
           startDate,
           endDate,
-          position,
+          jobPosition,
           summary,
           url
         } :{
           name: string;
           startDate: string;
           endDate: string;
-          position: string;
+          jobPosition: string;
           summary: string | string[];
           url: string;
         }) => {
@@ -46,7 +46,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
                         {name}
                       </a>
                     </h3>
-                    <h4>{position}</h4>
+                    <h4>{jobPosition}</h4>
                   </div>
 
                   <time>{years}</time>

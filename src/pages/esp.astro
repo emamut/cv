@@ -9,13 +9,28 @@ import Projects from "@/components/sections/Projects.astro"
 import Skills from "@/components/sections/Skills.astro"
 import KeyboardManager from "@/components/KeyboardManager.astro"
 
-import { basics, work, education, projects, skills } from "@cv"
-const { name, label } = basics
+import {
+  getBasic,
+  getProfiles,
+  getExperiences,
+  getEducations,
+  getProjects,
+  getSkills
+} from "../lib/datocms"
+
+const lang = "es"
+
+const basics = await getBasic(lang)
+const profiles = await getProfiles(lang)
+const work = await getExperiences(lang)
+const education = await getEducations(lang)
+const projects = await getProjects(lang)
+const skills = await getSkills(lang)
 ---
 
-<Layout title={`Portafolio de ${name} - ${label}`}>
+<Layout title={`Portafolio de ${basics.name} - ${basics.label}`}>
   <main>
-    <Hero basics={basics} />
+    <Hero basics={basics} profiles={profiles} />
     <About summary={basics.summary} title="Sobre mí" />
     <Experience work={work} title="Experiencia" />
     <Education education={education} title="Educación" />

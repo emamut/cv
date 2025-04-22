@@ -26,7 +26,7 @@ export async function getBasic(lang) {
   return data.basic;
 }
 
-export async function getProfiles(lang) {
+export async function getProfiles() {
   const query = `query MyQuery {
     allProfiles(orderBy: position_DESC) {
       network

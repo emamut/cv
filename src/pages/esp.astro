@@ -21,14 +21,14 @@ import {
 const lang = "es"
 
 const basics = await getBasic(lang)
-const profiles = await getProfiles(lang)
+const profiles = await getProfiles()
 const work = await getExperiences(lang)
 const education = await getEducations(lang)
 const projects = await getProjects(lang)
 const skills = await getSkills(lang)
 ---
 
-<Layout title={`Portafolio de ${basics.name} - ${basics.label}`}>
+<Layout title={`Hoja de Vida de ${basics.name} - ${basics.label}`}>
   <main>
     <Hero basics={basics} profiles={profiles} />
     <About summary={basics.summary} title="Sobre mí" />

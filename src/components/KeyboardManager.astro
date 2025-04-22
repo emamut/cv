@@ -1,11 +1,17 @@
 ---
-import { basics } from "@cvEn"
-
 import 'hotkeypad/reset.css'
 import 'hotkeypad/index.css'
 import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
-const { profiles } = basics
+import { getProfiles } from '../lib/datocms'
+interface Profile {
+  network: string
+  url: string
+  icon: string
+}
+
+const profiles: Profile[] = await getProfiles()
+
 const { lng } = Astro.props
 
 const translations = lng === 'eng'

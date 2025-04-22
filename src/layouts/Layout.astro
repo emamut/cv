@@ -1,21 +1,21 @@
 ---
-import { basics } from "@cvEn"
-
 interface Props {
   title: string
 }
 
-const { title } = Astro.props
+import { getBasic } from '../lib/datocms'
+const basics = await getBasic('en')
 
-const { image, summary, url } = basics
+const { title } = Astro.props
+const url = Astro.request.url
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
-    <meta name="description" content={summary} />
+    <meta name="description" content={basics.summary} />
     <meta name="viewport" content="width=device-width" />
 
     <!-- Favicon -->
@@ -27,14 +27,14 @@ const { image, summary, url } = basics
     <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={summary} />
+    <meta property="og:description" content={basics.summary} />
     <meta property="og:image" content="" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content={url.split("//")[1] ?? ''} />
     <meta property="twitter:url" content={url} />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={summary} />
+    <meta name="twitter:description" content={basics.summary} />
     <meta name="twitter:image" content="" />
 
     <!-- Google tag (gtag.js) -->

@@ -13,19 +13,24 @@ interface Profile {
 const profiles: Profile[] = await getProfiles()
 
 const { lng } = Astro.props
+const basePath = Astro.url.origin;
 
-const translations = lng === 'eng'
+const translations = lng === 'en'
   ? {
       title: "Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open the command palette.",
       print: "Print",
       visit: "Visit",
-      search: "Search command"
+      search: "Search command",
+      translateText: "Translate to Spanish",
+      translateLink: basePath + "/esp"
     }
   : {
       title: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos.',
       print: "Imprimir",
       visit: "Visitar",
-      search: "Buscar comando"
+      search: "Buscar comando",
+      translateText: "Traducir al inglés",
+      translateLink: basePath + "/"
     }
 
 const profilesInfo = profiles.map(({ network, url, icon }) => {
@@ -38,14 +43,11 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     url,
     icon: `<i class="ti ti-brand-${icon}"></i>`,
     hotkey: `ctrl+${firstLetter}`,
-    lng: lng,
   }
 })
 ---
 
-<footer id="normal-footer" class="no-print" set:html={lng === 'en' ?
-'Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open the command palette.'
-: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos.'}></footer>
+<footer id="normal-footer" class="no-print" set:html={translations.title}></footer>
 </footer>
 
 <div id="footer-button" class="no-print">
@@ -56,6 +58,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
   id="hotkeypad"
   data-placeholder={translations.search}
   data-info={JSON.stringify(profilesInfo)}
+  data-translations={JSON.stringify(translations)}
 >
 </div>
 
@@ -67,7 +70,6 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     url: string
     icon: string
     hotkey: string
-    lng: string
     handler?: () => void
   }
 
@@ -76,6 +78,10 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
   const hotkeypad = new HotKeyPad()
   const info = hotkeypad.instance.getAttribute("data-info") ?? "[]"
   const parsedInfo = JSON.parse(info) as Info[]
+
+  const hotkeypadElement = document.getElementById("hotkeypad");
+  const translationsData = hotkeypadElement?.getAttribute("data-translations") ?? "{}";
+  const translations = JSON.parse(translationsData);
 
   const data = parsedInfo.map(
     ({ url, hotkey, icon, id, section, title }) => {
@@ -94,12 +100,22 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
   hotkeypad.setCommands([
     {
       id: "print",
-      title: "Print",
+      title: translations.print,
       icon: `<i class="ti ti-printer"></i>`,
       hotkey: "ctrl+P",
       section: "Actions",
       handler: () => {
         window.print()
+      }
+    },
+    {
+      id: "translate",
+      title: translations.translateText,
+      icon: `<i class="ti ti-language-hiragana></i>`,
+      hotkey: "ctrl+H",
+      section: "Actions",
+      handler: () => {
+        window.open(translations.translateLink, "_self")
       }
     },
     ...data

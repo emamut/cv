@@ -28,7 +28,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
           const startYear = new Date(startDate).getFullYear()
 
           let endDateFinal = 'Current'
-          if(endDate != null){
+          if(endDate !== ''){
             endDateFinal = months[new Date(endDate).getMonth() + 1]
             endDateFinal += ' ' + new Date(endDate).getFullYear()
           }

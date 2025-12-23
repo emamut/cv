@@ -29,7 +29,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
           let endDateFinal = 'Current'
           if(endDate !== ''){
-            endDateFinal = months[new Date(endDate).getMonth() + 1]
+            endDateFinal = months[new Date(endDate).getMonth()]
             endDateFinal += ' ' + new Date(endDate).getFullYear()
           }
           const years = `${months[startMonth]} ${startYear} - ${endDateFinal}`

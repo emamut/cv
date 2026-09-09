@@ -65,14 +65,20 @@ const url = Astro.request.url;
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content="/portada.png" />
 
-    <!-- Google tag (gtag.js) -->
-    <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-6MSWFNCZ29"></script>
-    <script is:inline type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6MSWFNCZ29');
-    </script>
+    <!-- Google tag (gtag.js) - only in production to prevent local worker/tracker errors -->
+    {
+      import.meta.env.PROD && (
+        <>
+          <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-6MSWFNCZ29"></script>
+          <script is:inline type="text/partytown">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6MSWFNCZ29');
+          </script>
+        </>
+      )
+    }
   </head>
   <body>
     <HeaderNav currentLang={lang} />

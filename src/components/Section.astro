@@ -1,33 +1,78 @@
 ---
-// se ejecuta en el servidor o en build time <----
-const { title } = Astro.props
+interface Props {
+  title?: string;
+  className?: string;
+}
+
+const { title, className = "" } = Astro.props;
 ---
 
-<section>
-  {title && <h2>{title}</h2>}
+<section class={`cv-section ${className}`}>
+  {title && (
+    <div class="section-header">
+      <h2>{title}</h2>
+      <div class="section-divider"></div>
+    </div>
+  )}
   <slot />
 </section>
 
-<script>
-  // se ejecuta en el cliente <----
-</script>
-
 <style>
-  section {
-    max-width: 700px;
-    margin: 0 auto 48px;
+  .cv-section {
+    max-width: 740px;
+    margin: 0 auto 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   h2 {
-    margin-bottom: 8px;
+    font-size: 1.25rem;
     font-weight: 700;
-    line-height: 1.5;
-    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    margin: 0;
   }
 
-  @media (width <= 700px) {
-    section {
-      margin-bottom: 38px;
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 700px) {
+    .cv-section {
+      margin-bottom: 2.25rem;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+    }
+  }
+
+  @media print {
+    .cv-section {
+      margin-bottom: 1.5rem;
+      break-inside: auto;
+    }
+
+    .section-header {
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      color: #000;
+    }
+
+    .section-divider {
+      background: #e2e8f0;
     }
   }
 </style>

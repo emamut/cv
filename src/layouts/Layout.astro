@@ -1,77 +1,180 @@
 ---
 interface Props {
-  title: string
+  title: string;
+  description?: string;
+  lang?: 'en' | 'es';
 }
 
-import { getBasic } from '../lib/datocms'
-const basics = await getBasic('en')
+import HeaderNav from '../components/HeaderNav.astro';
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
+import { getBasic } from '../lib/datocms';
 
-const { title } = Astro.props
-const url = Astro.request.url
+const { title, description, lang = 'en' } = Astro.props;
+const basics = await getBasic(lang);
+const metaDescription = description || basics.summary;
+const url = Astro.request.url;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
-    <meta name="description" content={basics.summary} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={metaDescription} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Early Theme Detection to prevent FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Open Graph / SEO -->
     <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={basics.summary} />
-    <meta property="og:image" content="" />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content="/portada.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content={url.split("//")[1] ?? ''} />
     <meta property="twitter:url" content={url} />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={basics.summary} />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content="/portada.png" />
 
     <!-- Google tag (gtag.js) -->
-    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-6MSWFNCZ29"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-6MSWFNCZ29"></script>
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-6MSWFNCZ29');
     </script>
   </head>
   <body>
+    <HeaderNav currentLang={lang} />
     <slot />
   </body>
 </html>
 
 <style is:global>
-  html {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      "Courier New",
-      Courier,
-      monospace;
-    background: #fff;
-    letter-spacing: -0.025rem;
+  :root {
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-surface-subtle: #f8fafc;
+    --color-nav-bg: rgba(255, 255, 255, 0.82);
+    --color-border: #e2e8f0;
+    --color-border-hover: #cbd5e1;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #64748b;
+    --color-accent: #0284c7;
+    --color-accent-hover: #0369a1;
+    --color-accent-subtle: rgba(2, 132, 199, 0.08);
+    --color-tag-bg: #f1f5f9;
+    --color-tag-text: #334155;
+    --color-tag-border: #e2e8f0;
+    --color-success: #10b981;
+    --color-success-bg: rgba(16, 185, 129, 0.1);
+    --color-kbd-bg: #f1f5f9;
+    --color-kbd-border: #cbd5e1;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
   }
 
-  body,
+  html.dark {
+    --color-bg: #09090b;
+    --color-surface: #121215;
+    --color-surface-hover: #18181b;
+    --color-surface-subtle: #1c1c21;
+    --color-nav-bg: rgba(18, 18, 21, 0.82);
+    --color-border: #27272a;
+    --color-border-hover: #3f3f46;
+    --color-text-primary: #f4f4f5;
+    --color-text-secondary: #a1a1aa;
+    --color-text-muted: #71717a;
+    --color-accent: #38bdf8;
+    --color-accent-hover: #7dd3fc;
+    --color-accent-subtle: rgba(56, 189, 248, 0.12);
+    --color-tag-bg: #18181b;
+    --color-tag-text: #d4d4d8;
+    --color-tag-border: #27272a;
+    --color-success: #34d399;
+    --color-success-bg: rgba(52, 211, 153, 0.12);
+    --color-kbd-bg: #1f1f23;
+    --color-kbd-border: #3f3f46;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   figure {
     margin: 0;
     padding: 0;
   }
 
   a {
+    color: inherit;
     text-decoration: none;
   }
 
@@ -81,44 +184,33 @@ const url = Astro.request.url
     padding: 0;
   }
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      sans-serif;
+    color: var(--color-text-primary);
   }
 
   p {
-    color: #666;
-    font-size: 0.9rem;
-    line-height: 1.5;
     margin: 0;
-    text-wrap: pretty;
+    color: var(--color-text-secondary);
   }
 
+  /* Print Utilities */
   .print {
     display: none !important;
   }
 
   @media print {
+    @page {
+      margin: 12mm 14mm 12mm 14mm;
+      size: A4 portrait;
+    }
+
+    html, body {
+      background: #ffffff !important;
+      color: #000000 !important;
+      font-size: 11pt;
+    }
+
     .no-print {
       display: none !important;
     }
@@ -133,6 +225,11 @@ const url = Astro.request.url
 
     article {
       break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    section {
+      break-inside: auto;
     }
   }
 </style>

@@ -1,9 +1,32 @@
 ---
 import Section from "../Section.astro"
 
+interface Props {
+  summary: string;
+  title: string;
+}
+
 const { summary, title } = Astro.props
 ---
 
 <Section title={title}>
-  <p>{summary}</p>
+  <p class="about-summary">{summary}</p>
 </Section>
+
+<style>
+  .about-summary {
+    font-size: 0.935rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    text-wrap: pretty;
+    margin: 0;
+  }
+
+  @media print {
+    .about-summary {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #333;
+    }
+  }
+</style>

@@ -17,20 +17,22 @@ const basePath = Astro.url.origin;
 
 const translations = lng === 'en'
   ? {
-      title: "Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open the command palette.",
-      print: "Print",
+      title: "Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open command palette",
+      print: "Print / Save PDF",
       visit: "Visit",
-      search: "Search command",
-      translateText: "Translate to Spanish",
-      translateLink: basePath + "/esp"
+      search: "Search command...",
+      translateText: "Switch to Spanish",
+      translateLink: basePath + "/esp",
+      themeText: "Toggle Dark/Light Mode"
     }
   : {
-      title: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos.',
-      print: "Imprimir",
+      title: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos',
+      print: "Imprimir / Guardar PDF",
       visit: "Visitar",
-      search: "Buscar comando",
-      translateText: "Traducir al inglés",
-      translateLink: basePath + "/"
+      search: "Buscar comando...",
+      translateText: "Cambiar a Inglés",
+      translateLink: basePath + "/",
+      themeText: "Alternar Modo Claro / Oscuro"
     }
 
 const profilesInfo = profiles.map(({ network, url, icon }) => {
@@ -49,7 +51,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
 
 <footer id="normal-footer" class="no-print" set:html={translations.title}></footer>
 
-<div id="footer-button" class="no-print">
+<div id="footer-button" class="no-print" title="Command palette" aria-label="Command palette">
   <i class="ti ti-command"></i>
 </div>
 
@@ -96,6 +98,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       }
     }
   )
+
   hotkeypad.setCommands([
     {
       id: "print",
@@ -110,11 +113,28 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     {
       id: "translate",
       title: translations.translateText,
-      icon: `<i class="ti ti-language-hiragana></i>`,
-      hotkey: "ctrl+H",
+      icon: `<i class="ti ti-language"></i>`,
+      hotkey: "ctrl+L",
       section: "Actions",
       handler: () => {
-        window.open(translations.translateLink, "_self")
+        window.location.href = translations.translateLink;
+      }
+    },
+    {
+      id: "theme",
+      title: translations.themeText,
+      icon: `<i class="ti ti-sun"></i>`,
+      hotkey: "ctrl+T",
+      section: "Actions",
+      handler: () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
       }
     },
     ...data
@@ -122,88 +142,77 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
 
   const footerButton = document.getElementById("footer-button")
   footerButton?.addEventListener("click", () => {
-    var event = new KeyboardEvent("keydown", {
-      key: "K",
-      code: "KeyK",
-      keyCode: 75,
-      which: 75,
-      ctrlKey: true,
-      altKey: false,
-      shiftKey: false,
-      metaKey: false
-    })
-
-    document.dispatchEvent(event)
+    hotkeypad.open();
   })
 </script>
 
 <style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  #normal-footer {
+    display: none;
   }
 
-  @media (min-width: 601px) {
-    #normal-footer {
-      display: block;
-    }
-
-    #footer-button {
-      display: none;
-    }
-  }
-
-  @media (max-width: 600px) {
-    #normal-footer {
-      display: none;
-    }
-
-    #footer-button {
-      background: #fff;
-      position: fixed;
-      border: 1px solid #eee;
-      right: 10px;
-      bottom: 10px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-  }
-
-  footer {
-    background: #fdfdfd;
-    border-top: 1px solid #eee;
+  #footer-button {
     position: fixed;
-    bottom: 0px;
-    width: 100%;
-    padding-block: 8px;
-    text-align: center;
-    font-size: 0.85rem;
-
-    view-timeline-name: --revealing;
-    view-timeline-axis: block;
-
-    animation: linear 0.3s fadeIn;
-    animation-timeline: --revealing;
-    animation-range: entry 100% cover 10%;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+    z-index: 40;
   }
 
-  kbd {
-    background: #eee;
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size: 12px;
+  #footer-button:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-border-hover);
+    transform: scale(1.05);
   }
 
-  .ti {
+  #footer-button i {
     font-size: 1.2rem;
+  }
+
+  /* Hotkeypad Theme Styles */
+  :global(#hotkeypad [data-backdrop]) {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+
+  :global(#hotkeypad [data-container]) {
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-lg) !important;
+    color: var(--color-text-primary) !important;
+  }
+
+  :global(#hotkeypad input) {
+    color: var(--color-text-primary) !important;
+    background: transparent !important;
+    border-bottom: 1px solid var(--color-border) !important;
+  }
+
+  :global(#hotkeypad [data-item]) {
+    color: var(--color-text-secondary) !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  :global(#hotkeypad [data-item][data-selected]) {
+    background: var(--color-surface-subtle) !important;
+    color: var(--color-text-primary) !important;
+  }
+
+  :global(#hotkeypad kbd) {
+    background: var(--color-kbd-bg) !important;
+    border: 1px solid var(--color-kbd-border) !important;
+    color: var(--color-text-muted) !important;
   }
 </style>

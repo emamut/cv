@@ -28,29 +28,42 @@ const projects = await getProjects(lang)
 const skills = await getSkills(lang)
 ---
 
-<Layout title={`Curriculum Vitae of ${basics.name} - ${basics.label}`}>
-  <main>
+<Layout
+  title={`Curriculum Vitae | ${basics.name} - ${basics.label}`}
+  description={basics.summary}
+  lang={lang}
+>
+  <main class="cv-container">
     <Hero basics={basics} profiles={profiles} />
-    <About summary={basics.summary} title="About me" />
-    <Experience work={work} title="Experience" />
-    <Education education={education} title="Education" />
-    <Projects projects={projects} title="Projects" />
-    <Skills skills={skills} title="Skills" />
+    <About summary={basics.summary} title="About Me" />
+    <Experience work={work} title="Work Experience" />
+    <Education education={education} title="Education & Certifications" />
+    <Projects projects={projects} title="Featured Projects" />
+    <Skills skills={skills} title="Skills & Technologies" />
   </main>
 
   <KeyboardManager lng={lang} />
 </Layout>
 
 <style>
-  main {
-    padding: 4rem;
-    margin: auto;
+  .cv-container {
+    max-width: 740px;
     width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 6rem;
   }
 
-  @media (width <= 700px) {
-    main {
-      padding: 2rem;
+  @media (max-width: 700px) {
+    .cv-container {
+      padding: 1rem 1rem 5rem;
+    }
+  }
+
+  @media print {
+    .cv-container {
+      padding: 0;
+      max-width: 100%;
+      margin: 0;
     }
   }
 </style>

@@ -1,0 +1,206 @@
+{
+  "basics": {
+    "name": "Faber Andrés Vergara Holguín",
+    "label": "Desarrollador Front End Senior & Conferencista",
+    "status": "Disponible para nuevos proyectos",
+    "image": "https://gravatar.com/avatar/e6fd3ad64a54b915d437aa6dd93fa039?size=256",
+    "email": "fabervergara@gmail.com",
+    "phone": "+57 3160414585",
+    "city": "Bogotá",
+    "country": "Colombia",
+    "summary": "Desarrollador Front-End Senior con más de 10 años de experiencia diseñando e implementando aplicaciones web de alto rendimiento, interfaces escalables y arquitecturas CMS a medida. Trayectoria comprobada liderando equipos técnicos multidisciplinarios y colaborando con organizaciones internacionales como HURIDOCS (Suiza) y medios de comunicación de primer nivel. Especializado en el ecosistema moderno de JavaScript y TypeScript (React, Vue.js, Next.js), arquitectura corporativa en WordPress, flujos en Docker y despliegues cloud en AWS. Conferencista y mentor tecnológico apasionado por el código limpio, la optimización web y la automatización."
+  },
+  "profiles": [
+    {
+      "network": "GitHub",
+      "username": "emamut",
+      "icon": "github",
+      "url": "https://github.com/emamut"
+    },
+    {
+      "network": "LinkedIn",
+      "username": "emamut",
+      "icon": "linkedin",
+      "url": "https://linkedin.com/in/emamut"
+    },
+    {
+      "network": "X",
+      "username": "e_mamut",
+      "icon": "x",
+      "url": "https://x.com/e_mamut"
+    }
+  ],
+  "work": [
+    {
+      "name": "The Webcam Lab",
+      "country": "Colombia",
+      "jobPosition": "Líder de Tecnología (IT Manager)",
+      "startDate": "2025-07-01",
+      "endDate": "2025-12-31",
+      "url": "https://thewebcamlab.com/",
+      "highlights": ["Liderazgo Técnico", "APIs de UniFi", "Automatización de Red", "Infraestructura"],
+      "summary": [
+        "Coordiné y supervisé el desempeño del equipo técnico, implementando flujos de trabajo ágiles y protocolos proactivos de resolución de incidencias.",
+        "Diseñé e integré sistemas empresariales para el monitoreo, aprovisionamiento y administración automatizada de redes utilizando las APIs de UniFi."
+      ]
+    },
+    {
+      "name": "Simian S.A.S",
+      "country": "Colombia",
+      "jobPosition": "Desarrollador WordPress Fullstack",
+      "startDate": "2023-08-01",
+      "endDate": "2024-10-22",
+      "url": "https://simian.co/",
+      "highlights": ["WordPress", "Docker", "AWS", "BuddyPress"],
+      "summary": [
+        "Diagnostiqué y resolví incidentes críticos de arquitectura y rendimiento en portales corporativos de alto tráfico como Universidad Externado de Colombia, Davidaclub y Salud Total.",
+        "Desarrollé y optimicé plugins avanzados a medida (incluyendo adaptaciones complejas de BuddyPress y endpoints REST) según los requerimientos de negocio.",
+        "Estandaricé entornos de desarrollo mediante Docker y optimicé los procesos de despliegue en la infraestructura cloud de AWS."
+      ]
+    },
+    {
+      "name": "Grupo El Comercio",
+      "country": "Ecuador",
+      "jobPosition": "Desarrollador Front End Senior & Líder de Equipo",
+      "startDate": "2018-09-01",
+      "endDate": "2023-07-01",
+      "url": "https://www.elcomercio.com/",
+      "highlights": ["Liderazgo", "Vue.js", "WordPress", "JavaScript"],
+      "summary": [
+        "Lideré el equipo de Diseño y Desarrollo Web durante 8 meses, coordinando a 3 desarrolladores y 2 diseñadores UI/UX en iniciativas digitales estratégicas.",
+        "Arquitecté el rediseño integral y la modernización técnica de plataformas clave en WordPress, incluyendo el portal del Club de Suscriptores.",
+        "Construí especiales interactivos multimedia y reportajes de datos para proyectos periodísticos de alto impacto con millones de visitas mensuales."
+      ]
+    },
+    {
+      "name": "HURIDOCS (Human Rights Information and Documentation Systems)",
+      "country": "Suiza",
+      "jobPosition": "Desarrollador Web",
+      "startDate": "2016-11-01",
+      "endDate": "2017-11-01",
+      "url": "https://huridocs.org/",
+      "highlights": ["ONG Internacional", "OpenEvSys", "RightDocs", "Seguridad"],
+      "summary": [
+        "Mantuve y optimicé las plataformas centrales de documentación de derechos humanos (OpenEvSys, RightDocs y CaseBox) para ONGs internacionales.",
+        "Implementé mantenimiento técnico continuo, mejoras de seguridad y optimización de rendimiento en instalaciones globales de WordPress."
+      ]
+    },
+    {
+      "name": "Grupo El Comercio",
+      "country": "Ecuador",
+      "jobPosition": "Desarrollador Front End",
+      "startDate": "2014-11-01",
+      "endDate": "2016-08-01",
+      "url": "https://www.elcomercio.com/",
+      "highlights": ["Datos Interactivos", "JavaScript", "Diseño Responsive"],
+      "summary": [
+        "Desarrollé aplicaciones interactivas y especiales de visualización de datos con estándares modernos de diseño responsive.",
+        "Impartí capacitaciones técnicas al equipo editorial y de desarrollo en herramientas modernas de front-end, preprocesadores y metodologías de trabajo ágil."
+      ]
+    },
+    {
+      "name": "Klein Tours / Go Galapagos",
+      "country": "Ecuador",
+      "jobPosition": "Desarrollador Web & DBA",
+      "startDate": "2014-02-01",
+      "endDate": "2014-10-01",
+      "url": "https://www.gogalapagos.com/",
+      "highlights": ["T-SQL", "Intranet", "Comercio Electrónico"],
+      "summary": [
+        "Mantuve el portal internacional para socios turísticos (ktpartners.com) y las aplicaciones de intranet corporativa.",
+        "Administré bases de datos relacionales, ejecuté optimizaciones de rendimiento y creé consultas avanzadas en T-SQL."
+      ]
+    },
+    {
+      "name": "Aureole S.A",
+      "country": "Ecuador",
+      "jobPosition": "Desarrollador Web",
+      "startDate": "2013-11-01",
+      "endDate": "2014-01-31",
+      "url": "https://www.aureole.com.ec/",
+      "highlights": ["CodeIgniter", "Backbone.js", "MySQL"],
+      "summary": [
+        "Implementé mejoras y optimizaciones en aplicaciones web empresariales desarrolladas con CodeIgniter, Backbone.js y MySQL."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Colsubsidio - Cymetria",
+      "area": "Certificación en Arquitectura de Soluciones AWS",
+      "startDate": "2024-01-01",
+      "endDate": "2024-12-31",
+      "url": "https://cymetria.com/"
+    },
+    {
+      "institution": "Servicio Nacional de Aprendizaje - SENA",
+      "area": "Diseño y Edición Digital (Photoshop)",
+      "startDate": "2012-01-01",
+      "endDate": "2012-12-31",
+      "url": "https://www.sena.edu.co/"
+    },
+    {
+      "institution": "Universidad del Valle - Sede Buga",
+      "area": "Tecnología en Sistemas de Información",
+      "startDate": "1998-01-01",
+      "endDate": "2002-01-01",
+      "url": "https://buga.univalle.edu.co/"
+    }
+  ],
+  "skills": [
+    { "name": "HTML5", "icon": "html5", "category": "Frontend" },
+    { "name": "CSS3", "icon": "css3", "category": "Frontend" },
+    { "name": "SASS", "icon": "sass", "category": "Frontend" },
+    { "name": "Tailwind CSS", "icon": "tailwind", "category": "Frontend" },
+    { "name": "JavaScript", "icon": "javascript", "category": "Frontend" },
+    { "name": "TypeScript", "icon": "typescript", "category": "Frontend" },
+    { "name": "React", "icon": "react", "category": "Frontend" },
+    { "name": "Vue.js", "icon": "vue", "category": "Frontend" },
+    { "name": "Next.js", "icon": "nextjs", "category": "Frontend" },
+    { "name": "Node.js", "icon": "nodejs", "category": "Backend & CMS" },
+    { "name": "PHP", "icon": "php", "category": "Backend & CMS" },
+    { "name": "WordPress", "icon": "wordpress", "category": "Backend & CMS" },
+    { "name": "AWS", "icon": "aws", "category": "Cloud & DevOps" },
+    { "name": "Docker", "icon": "docker", "category": "Cloud & DevOps" },
+    { "name": "MySQL", "icon": "mysql", "category": "Cloud & DevOps" },
+    { "name": "Git", "icon": "git", "category": "Herramientas" },
+    { "name": "GitHub", "icon": "github", "category": "Herramientas" }
+  ],
+  "projects": [
+    {
+      "name": "Vitrales Quito Ecuador",
+      "isActive": true,
+      "description": "Sitio web corporativo desarrollado para el maestro vitralista ecuatoriano Wilson Ramírez. Diseñado y optimizado estratégicamente para liderar las búsquedas en Google (#1 posición).",
+      "highlights": ["WordPress", "SEO #1 Google", "Diseño Responsive"],
+      "url": "https://vitralesquitoecuador.com/"
+    },
+    {
+      "name": "C&C Abogados",
+      "isActive": true,
+      "description": "Portal corporativo para la firma legal C&C Abogados, enfocado en captación de clientes, velocidad de carga y presentación ejecutiva.",
+      "highlights": ["WordPress", "Identidad Corporativa", "Performance"],
+      "url": "https://ccabogadosec.com/"
+    },
+    {
+      "name": "Carrera de exportaciones",
+      "isActive": true,
+      "description": "Especial interactivo de periodismo de datos para Grupo El Comercio que compara de forma dinámica las exportaciones de camarón y banano en Ecuador con gráficos interactivos.",
+      "highlights": ["JavaScript", "Data Storytelling", "CSS3"],
+      "url": "https://especiales.elcomercio.com/2014/10/carrera/"
+    },
+    {
+      "name": "Ranking de gasolineras del país",
+      "isActive": false,
+      "description": "Visualización geoespacial interactiva que geolocaliza y califica las gasolineras a lo largo de Ecuador con filtros en tiempo real y mapas con Leaflet.",
+      "highlights": ["JavaScript", "Leaflet Maps", "GeoJSON"],
+      "url": "https://especiales.elcomercio.com/2015/10/gasolineras/"
+    },
+    {
+      "name": "Tu bebé en la portada de Familia",
+      "isActive": true,
+      "description": "Plataforma interactiva de concurso masivo para la Revista Familia donde miles de usuarios subieron fotografías y votaron en línea por sus favoritas.",
+      "highlights": ["JavaScript", "Alta Concurrencia", "UI Interactiva"],
+      "url": "https://especiales.elcomercio.com/2018/10/concurso-familia-bebes-portada/"
+    }
+  ]
+}

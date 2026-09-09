@@ -28,29 +28,42 @@ const projects = await getProjects(lang)
 const skills = await getSkills(lang)
 ---
 
-<Layout title={`Hoja de Vida de ${basics.name} - ${basics.label}`}>
-  <main>
+<Layout
+  title={`Hoja de Vida | ${basics.name} - ${basics.label}`}
+  description={basics.summary}
+  lang={lang}
+>
+  <main class="cv-container">
     <Hero basics={basics} profiles={profiles} />
     <About summary={basics.summary} title="Sobre mí" />
-    <Experience work={work} title="Experiencia" />
-    <Education education={education} title="Educación" />
-    <Projects projects={projects} title="Proyectos" />
-    <Skills skills={skills} title="Habilidades" />
+    <Experience work={work} title="Experiencia Laboral" />
+    <Education education={education} title="Educación & Certificaciones" />
+    <Projects projects={projects} title="Proyectos Destacados" />
+    <Skills skills={skills} title="Habilidades & Tecnologías" />
   </main>
 
   <KeyboardManager lng={lang} />
 </Layout>
 
 <style>
-  main {
-    padding: 4rem;
-    margin: auto;
+  .cv-container {
+    max-width: 740px;
     width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 6rem;
   }
 
-  @media (width <= 700px) {
-    main {
-      padding: 2rem;
+  @media (max-width: 700px) {
+    .cv-container {
+      padding: 1rem 1rem 5rem;
+    }
+  }
+
+  @media print {
+    .cv-container {
+      padding: 0;
+      max-width: 100%;
+      margin: 0;
     }
   }
 </style>

@@ -1,0 +1,274 @@
+---
+interface Props {
+  currentLang: 'en' | 'es';
+}
+
+const { currentLang } = Astro.props;
+
+const isEn = currentLang === 'en';
+const targetLangUrl = isEn ? '/esp/' : '/';
+const targetLangShort = isEn ? 'ES' : 'EN';
+const printLabel = isEn ? 'Print / PDF' : 'Imprimir / PDF';
+---
+
+<header class="navbar no-print">
+  <div class="navbar-container">
+    <div class="navbar-left">
+      <a href={isEn ? "/" : "/esp"} class="brand-pill" title="Curriculum Vitae">
+        <span class="status-dot"></span>
+        <span class="brand-name">Faber Vergara</span>
+        <span class="brand-badge">CV</span>
+      </a>
+    </div>
+
+    <div class="navbar-right">
+      <!-- Language Switcher -->
+      <a
+        href={targetLangUrl}
+        class="nav-btn lang-btn"
+        title={isEn ? "Cambiar a Español" : "Switch to English"}
+        aria-label={isEn ? "Cambiar a Español" : "Switch to English"}
+      >
+        <i class="ti ti-language"></i>
+        <span class="lang-text">{targetLangShort}</span>
+      </a>
+
+      <!-- Print / PDF Button -->
+      <button
+        type="button"
+        id="print-btn"
+        class="nav-btn"
+        title={printLabel}
+        aria-label={printLabel}
+      >
+        <i class="ti ti-printer"></i>
+        <span class="btn-label">{isEn ? 'PDF' : 'PDF'}</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button
+        type="button"
+        id="theme-toggle"
+        class="nav-btn"
+        title={isEn ? "Toggle theme" : "Cambiar tema"}
+        aria-label={isEn ? "Toggle theme" : "Cambiar tema"}
+      >
+        <i class="ti ti-sun icon-sun"></i>
+        <i class="ti ti-moon icon-moon"></i>
+      </button>
+
+      <!-- Command Palette Trigger -->
+      <button
+        type="button"
+        id="cmd-palette-btn"
+        class="nav-btn cmd-btn"
+        title={isEn ? "Command palette (Cmd + K)" : "Panel de comandos (Cmd + K)"}
+        aria-label={isEn ? "Command palette" : "Panel de comandos"}
+      >
+        <i class="ti ti-command"></i>
+        <kbd class="kbd-badge">K</kbd>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Theme Toggle Handler
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  function setTheme(theme: string) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  themeToggleBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    setTheme(isDark ? 'light' : 'dark');
+  });
+
+  // Print button
+  const printBtn = document.getElementById('print-btn');
+  printBtn?.addEventListener('click', () => {
+    window.print();
+  });
+
+  // Command palette button triggers Cmd+K
+  const cmdBtn = document.getElementById('cmd-palette-btn');
+  cmdBtn?.addEventListener('click', () => {
+    const footerBtn = document.getElementById('footer-button');
+    if (footerBtn) {
+      footerBtn.click();
+    } else {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }));
+    }
+  });
+</script>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 1rem;
+    z-index: 50;
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-nav-bg, rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+  }
+
+  .dark .navbar-container {
+    background: var(--color-nav-bg, rgba(18, 18, 21, 0.85));
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    color: var(--color-text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .brand-pill:hover {
+    opacity: 0.85;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-success);
+    box-shadow: 0 0 0 2px var(--color-success-bg);
+    animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.15);
+    }
+  }
+
+  .brand-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    background: var(--color-surface-subtle);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    height: 32px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--color-surface-subtle);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+  }
+
+  .nav-btn i {
+    font-size: 1rem;
+  }
+
+  .icon-sun {
+    display: none;
+  }
+
+  .icon-moon {
+    display: block;
+  }
+
+  :global(.dark) .icon-sun {
+    display: block;
+  }
+
+  :global(.dark) .icon-moon {
+    display: none;
+  }
+
+  .kbd-badge {
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+    background: var(--color-kbd-bg);
+    border: 1px solid var(--color-kbd-border);
+    color: var(--color-text-muted);
+    line-height: 1;
+  }
+
+  @media (max-width: 600px) {
+    .navbar {
+      top: 0.5rem;
+      padding: 0 0.5rem;
+    }
+    
+    .brand-name {
+      display: none;
+    }
+
+    .btn-label {
+      display: none;
+    }
+
+    .cmd-btn {
+      display: none;
+    }
+  }
+</style>

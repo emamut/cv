@@ -1,83 +1,176 @@
 ---
 import Section from "../Section.astro"
 
-const { education, title } = Astro.props
+interface EducationItem {
+  institution: string;
+  startDate: string;
+  endDate: string | null;
+  area: string;
+  url?: string;
+}
+
+interface Props {
+  education: EducationItem[];
+  title: string;
+}
+
+const { education, title } = Astro.props;
 ---
 
 <Section title={title}>
-  <ul>
+  <div class="education-list">
     {
-      education.map(({
-        institution,
-        startDate,
-        endDate,
-        area,
-        url
-      } : {
-        institution: string;
-        startDate: string;
-        endDate: string | null;
-        area: string;
-        url: string;
-      }) => {
-        const startYear = new Date(startDate).getFullYear()
-        const endYear =
-          endDate != null ? new Date(endDate).getFullYear() : "Actual"
-        const years = `${startYear} - ${endYear}`
+      education.map((item) => {
+        const isSpanish = title.toLowerCase().includes('educación') || title.toLowerCase().includes('educacion');
+        const startYear = item.startDate ? item.startDate.split('-')[0] : '';
+        const endYear = item.endDate ? item.endDate.split('-')[0] : (isSpanish ? 'Presente' : 'Present');
+        const years = startYear === endYear || !endYear ? `${startYear}` : `${startYear} — ${endYear}`;
 
         return (
-          <li>
-            <article>
-              <header>
-                <div>
-                  <h3>
-                    <a href={url} title={`See ${institution}`} target="_blank">
-                    {institution}
-                    </a></h3>
-                </div>
+          <article class="education-card">
+            <div class="education-main">
+              <div class="institution-header">
+                <h3 class="institution-name">
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" class="institution-link">
+                      <span>{item.institution}</span>
+                      <i class="ti ti-arrow-up-right link-icon"></i>
+                    </a>
+                  ) : (
+                    <span>{item.institution}</span>
+                  )}
+                </h3>
+              </div>
+              <p class="education-area">{item.area}</p>
+            </div>
 
-                <time>{years}</time>
-              </header>
-
-              <footer>
-                <p>{area}</p>
-              </footer>
-            </article>
-          </li>
-        )
+            <time class="period-badge">{years}</time>
+          </article>
+        );
       })
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
+  .education-list {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 1rem;
   }
 
-  article h3 {
-    font-weight: 500;
-    color: #111;
-  }
-
-  header {
+  .education-card {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 4px;
+    gap: 1rem;
+    padding: 0.9rem 1.15rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
   }
 
-  time {
-    color: #555;
+  .education-card:hover {
+    border-color: var(--color-border-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .education-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .institution-name {
+    font-size: 0.98rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+
+  .institution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .institution-link:hover {
+    color: var(--color-accent);
+  }
+
+  .link-icon {
     font-size: 0.85rem;
-    min-width: 102px;
+    opacity: 0.6;
+    transition: transform 0.15s ease, opacity 0.15s ease;
   }
 
-  @media (width <= 700px) {
-    time {
-      text-align: right;
+  .institution-link:hover .link-icon {
+    transform: translate(1px, -1px);
+    opacity: 1;
+  }
+
+  .education-area {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .period-badge {
+    font-size: 0.775rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 600px) {
+    .education-card {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .period-badge {
+      align-self: flex-start;
+    }
+  }
+
+  @media print {
+    .education-list {
+      gap: 0.65rem;
+    }
+
+    .education-card {
+      padding: 0.5rem 0.75rem;
+      border-color: #e2e8f0;
+      box-shadow: none;
+      break-inside: avoid;
+    }
+
+    .institution-name {
+      font-size: 0.9rem;
+      color: #000;
+    }
+
+    .education-area {
+      font-size: 0.8rem;
+      color: #333;
+    }
+
+    .period-badge {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #555;
     }
   }
 </style>

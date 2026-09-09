@@ -2,181 +2,323 @@
 import { Image } from "astro:assets"
 import gravatarUrl from 'gravatar-url';
 import Section from "@/components/Section.astro"
-import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 const { basics, profiles } = Astro.props;
-const imageURL = gravatarUrl(basics.email, {size: 128});
+const imageURL = basics.image || gravatarUrl(basics.email, { size: 256 });
 
-const linkedInfo = profiles.find(({ network }: { network: string; url: string; username: string; icon: string }) => network === "LinkedIn")
-const linkedUrl = linkedInfo?.url
+const linkedInfo = profiles.find(({ network }: { network: string }) => network.toLowerCase() === "linkedin");
+const githubInfo = profiles.find(({ network }: { network: string }) => network.toLowerCase() === "github");
 
-const printInfo = [basics.email, basics.phone, linkedUrl].filter(Boolean).join(" • ")
+const printInfo = [
+  basics.email,
+  basics.phone,
+  basics.city ? `${basics.city}, ${basics.country}` : basics.country,
+  linkedInfo?.url?.replace('https://', ''),
+  githubInfo?.url?.replace('https://', '')
+].filter(Boolean).join("  •  ");
 ---
 
-<Section>
-  <div class="container">
-    <div class="info">
-      <h1>{basics.name}</h1>
-      <h2>{basics.label}</h2>
-      <span>
-        <i class="ti ti-world"></i>
-        {basics.city}, {basics.country}
-      </span>
-      <footer class="print">
+<Section className="hero-section">
+  <div class="hero-container">
+    <div class="hero-info">
+      {basics.status && (
+        <div class="status-badge no-print">
+          <span class="status-indicator"></span>
+          <span>{basics.status}</span>
+        </div>
+      )}
+
+      <h1 class="hero-name">{basics.name}</h1>
+      <h2 class="hero-label">{basics.label}</h2>
+
+      <div class="hero-location">
+        <i class="ti ti-map-pin"></i>
+        <span>{basics.city}, {basics.country}</span>
+      </div>
+
+      <!-- Clean ATS Print Info -->
+      <div class="hero-print-info print">
         {printInfo}
-      </footer>
-      <footer class="no-print">
-        {
-          basics.email && (
+      </div>
+
+      <!-- Interactive Contact Actions -->
+      <div class="hero-actions no-print">
+        {basics.email && (
+          <a
+            href={`mailto:${basics.email}`}
+            title={`Email: ${basics.email}`}
+            class="action-pill"
+          >
+            <i class="ti ti-mail"></i>
+            <span class="pill-text">Email</span>
+          </a>
+        )}
+
+        {basics.phone && (
+          <a
+            href={`tel:${basics.phone}`}
+            title={`Phone: ${basics.phone}`}
+            class="action-pill"
+          >
+            <i class="ti ti-phone"></i>
+            <span class="pill-text">Llamar</span>
+          </a>
+        )}
+
+        {profiles.map(({ network, icon, url }: { network: string; icon: string; url: string }) => {
+          return (
             <a
-              href={`mailto:${basics.email}`}
-              title={`Send an e-mail to ${basics.name} at ${basics.email}`}
+              href={url}
+              title={`Perfil en ${network}`}
               target="_blank"
               rel="noopener noreferrer"
+              class="action-pill"
             >
-              <i class="ti ti-mail"></i>
+              <i class={`ti ti-brand-${icon}`}></i>
+              <span class="pill-text">{network}</span>
             </a>
-          )
-        }
-        {
-          basics.phone && (
-            <a
-              href={`tel:${basics.phone}`}
-              title={`Call ${basics.name} by phone at ${basics.phone}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="ti ti-phone"></i>
-            </a>
-          )
-        }
-        {
-          profiles.map(({ network, icon, url }: { network: string; name:string; icon: string; url: string }) => {
-            return (
-              <a
-                href={url}
-                title={`Visit the profile of ${basics.name} in ${network}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i class=`ti ti-brand-${icon}`></i>
-              </a>
-            )
-          })
-        }
-      </footer>
+          );
+        })}
+      </div>
     </div>
-    <figure>
-      <Image
-        src={imageURL}
-        alt={basics.name}
-        width={128}
-        height={128}
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
+
+    <div class="hero-avatar-wrapper">
+      <div class="hero-avatar-container">
+        <Image
+          src={imageURL}
+          alt={basics.name}
+          width={120}
+          height={120}
+          loading="eager"
+          decoding="async"
+          class="hero-avatar"
+        />
+        <div class="avatar-badge no-print" title="Online / Disponible">
+          <span class="avatar-dot"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </Section>
 
 <style>
-  .container {
+  .hero-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 2rem;
   }
 
-  .info {
+  .hero-info {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-right: 32px;
+    gap: 0.65rem;
+    flex: 1;
   }
 
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    color: #444;
-    font-weight: 500;
-    font-size: 1.1rem;
-    text-wrap: balance;
-  }
-
-  img {
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    width: 128px;
-    border-radius: 16px;
-  }
-
-  span {
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.85rem;
-    letter-spacing: -0.05rem;
-  }
-
-  i.ti {
-    color: #777;
-    font-size: 1.5rem;
-  }
-
-  footer {
-    color: #555;
-    font-size: 0.65rem;
-    display: flex;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  footer a {
-    color: #777;
+  .status-badge {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 0.25rem 0.65rem;
+    background: var(--color-success-bg);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-success);
+    margin-bottom: 0.25rem;
+  }
+
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-success);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    animation: statusPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes statusPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
+
+  .hero-name {
+    font-size: 2.15rem;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .hero-label {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .hero-location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .hero-location i {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .action-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+
+  .action-pill i {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    transition: color 0.15s ease;
+  }
+
+  .action-pill:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+  }
+
+  .action-pill:hover i {
+    color: var(--color-accent);
+  }
+
+  .hero-avatar-wrapper {
+    flex-shrink: 0;
+  }
+
+  .hero-avatar-container {
+    position: relative;
+    width: 112px;
+    height: 112px;
+  }
+
+  .hero-avatar {
+    width: 112px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .avatar-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background: var(--color-surface);
+    padding: 3px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
     justify-content: center;
-    border: 1px solid #eee;
-    padding: 4px;
-    height: 32px;
-    width: 32px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
   }
 
-  footer a:hover {
-    background: #eee;
-    border: 1px solid #ddd;
+  .avatar-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-success);
   }
 
-  @media (width <= 700px) {
-    .container {
+  .hero-print-info {
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero-container {
       flex-direction: column-reverse;
-    }
-
-    .info {
-      justify-content: center;
       align-items: center;
-      padding-right: 0;
       text-align: center;
+      gap: 1.5rem;
     }
 
-    figure {
-      display: flex;
-      justify-content: center;
+    .hero-info {
       align-items: center;
     }
 
-    h2 {
-      text-wrap: balance;
+    .hero-name {
+      font-size: 1.85rem;
     }
 
-    figure {
-      margin: 0 auto;
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .action-pill .pill-text {
+      display: none;
+    }
+
+    .action-pill {
+      padding: 0.45rem;
+      width: 36px;
+      height: 36px;
+      justify-content: center;
+    }
+  }
+
+  @media print {
+    .hero-container {
+      gap: 1rem;
+    }
+
+    .hero-name {
+      font-size: 1.75rem;
+      color: #000;
+    }
+
+    .hero-label {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .hero-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 12px;
     }
   }
 </style>

@@ -1,44 +1,202 @@
 ---
 import Section from "../Section.astro"
 
-const { skills, title } = Astro.props
+interface SkillItem {
+  name: string;
+  icon: string;
+  category?: string;
+  level?: string;
+}
+
+interface Props {
+  skills: SkillItem[];
+  title: string;
+}
+
+const { skills, title } = Astro.props;
+const isSpanish = title.toLowerCase().includes('habilidades');
+
+const categoryMap: Record<string, string> = {
+  HTML: 'Frontend',
+  HTML5: 'Frontend',
+  CSS: 'Frontend',
+  CSS3: 'Frontend',
+  SASS: 'Frontend',
+  Tailwind: 'Frontend',
+  'Tailwind CSS': 'Frontend',
+  JavaScript: 'Frontend',
+  TypeScript: 'Frontend',
+  React: 'Frontend',
+  Vue: 'Frontend',
+  'Vue.js': 'Frontend',
+  'Next.js': 'Frontend',
+  Node: 'Backend & CMS',
+  'Node.js': 'Backend & CMS',
+  PHP: 'Backend & CMS',
+  Wordpress: 'Backend & CMS',
+  WordPress: 'Backend & CMS',
+  AWS: 'Cloud & DevOps',
+  Docker: 'Cloud & DevOps',
+  MySQL: 'Cloud & DevOps',
+  Git: 'Tools',
+  GitHub: 'Tools',
+};
+
+const categoryLabels: Record<string, { en: string; es: string; icon: string }> = {
+  'Frontend': { en: 'Frontend & UI', es: 'Frontend & UI', icon: 'ti-code' },
+  'Backend & CMS': { en: 'Backend & CMS', es: 'Backend & CMS', icon: 'ti-server' },
+  'Cloud & DevOps': { en: 'Cloud & Infrastructure', es: 'Cloud e Infraestructura', icon: 'ti-cloud' },
+  'Tools': { en: 'Tools & Workflow', es: 'Herramientas & Flujo', icon: 'ti-tools' },
+};
+
+// Group skills into predefined categories in order
+const categoryOrder = ['Frontend', 'Backend & CMS', 'Cloud & DevOps', 'Tools'];
+const groupedSkills: Record<string, SkillItem[]> = {
+  'Frontend': [],
+  'Backend & CMS': [],
+  'Cloud & DevOps': [],
+  'Tools': [],
+};
+
+skills.forEach((skill) => {
+  const cat = skill.category || categoryMap[skill.name] || 'Frontend';
+  const normalizedCat = cat.toLowerCase().includes('backend')
+    ? 'Backend & CMS'
+    : cat.toLowerCase().includes('cloud') || cat.toLowerCase().includes('devops')
+      ? 'Cloud & DevOps'
+      : cat.toLowerCase().includes('tool') || cat.toLowerCase().includes('herramienta')
+        ? 'Tools'
+        : 'Frontend';
+
+  if (!groupedSkills[normalizedCat]) {
+    groupedSkills[normalizedCat] = [];
+  }
+  groupedSkills[normalizedCat].push(skill);
+});
 ---
 
 <Section title={title}>
-  <ul>
+  <div class="skills-container">
     {
-      skills.map(({ name, icon } : {name: string; icon: string}) => {
+      categoryOrder.map((catKey) => {
+        const list = groupedSkills[catKey] || [];
+        if (list.length === 0) return null;
+        const meta = categoryLabels[catKey] || { en: catKey, es: catKey, icon: 'ti-code' };
+        const label = isSpanish ? meta.es : meta.en;
+
         return (
-          <li>
-            <i class={`ti ti-brand-${icon} fa-2x`}></i> <span>{name}</span>
-          </li>
-        )
+          <div class="skill-category">
+            <h3 class="category-heading">
+              <i class={`ti ${meta.icon} cat-icon`}></i>
+              <span>{label}</span>
+            </h3>
+
+            <ul class="skills-list">
+              {list.map(({ name, icon }) => (
+                <li class="skill-pill">
+                  <i class={`ti ti-brand-${icon} skill-icon`}></i>
+                  <span class="skill-name">{name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
       })
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
-    display: inline-flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  li {
-    align-items: center;
-    background: #eee;
-    border-radius: 6px;
-    color: black;
+  .skills-container {
     display: flex;
-    font-size: 0.8rem;
-    font-weight: 500;
-    gap: 4px;
-    padding: 0.2rem 0.6rem;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 
-  li i.ti {
-    font-size: 1.2rem;
-    color: #444;∫
+  .skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .category-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .cat-icon {
+    font-size: 0.95rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .skill-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+
+  .skill-pill:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-hover);
+    transform: translateY(-1px);
+  }
+
+  .skill-icon {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    transition: color 0.15s ease;
+  }
+
+  .skill-pill:hover .skill-icon {
+    color: var(--color-accent);
+  }
+
+  @media print {
+    .skills-container {
+      gap: 0.85rem;
+    }
+
+    .category-heading {
+      font-size: 0.75rem;
+      color: #333;
+    }
+
+    .skill-pill {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      color: #000;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      box-shadow: none;
+    }
+
+    .skill-icon {
+      color: #444;
+      font-size: 0.95rem;
+    }
   }
 </style>

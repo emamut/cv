@@ -1,128 +1,303 @@
 ---
 import Section from "../Section.astro";
 
+interface ExperienceItem {
+  name: string;
+  country?: string;
+  jobPosition: string;
+  startDate: string;
+  endDate?: string | null;
+  summary: string | string[];
+  url?: string;
+  highlights?: string[];
+}
+
+interface Props {
+  work: ExperienceItem[];
+  title: string;
+}
+
 const { work, title } = Astro.props;
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const isSpanish = title.toLowerCase().includes('experiencia');
+
+function formatPeriod(start: string, end: string | null | undefined): string {
+  const esMonths = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  const enMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = isSpanish ? esMonths : enMonths;
+
+  const [sYear, sMonth] = (start || '').split('-');
+  const startStr = sYear && sMonth ? `${months[parseInt(sMonth, 10) - 1] || sMonth} ${sYear}` : start;
+
+  if (!end || end === '' || end.toLowerCase() === 'current' || end.toLowerCase() === 'actual') {
+    return `${startStr} — ${isSpanish ? 'Presente' : 'Present'}`;
+  }
+
+  const [eYear, eMonth] = end.split('-');
+  const endStr = eYear && eMonth ? `${months[parseInt(eMonth, 10) - 1] || eMonth} ${eYear}` : end;
+
+  return `${startStr} — ${endStr}`;
+}
 ---
 
 <Section title={title}>
-  <ul>
+  <div class="timeline">
     {
-      work.map(
-        ({ name,
-          startDate,
-          endDate,
-          jobPosition,
-          summary,
-          url
-        } :{
-          name: string;
-          startDate: string;
-          endDate: string;
-          jobPosition: string;
-          summary: string | string[];
-          url: string;
-        }) => {
-          const startMonth = new Date(startDate).getMonth() + 1
-          const startYear = new Date(startDate).getFullYear()
+      work.map((item) => {
+        const period = formatPeriod(item.startDate, item.endDate);
+        const summaryList = Array.isArray(item.summary)
+          ? item.summary
+          : typeof item.summary === 'string'
+            ? item.summary.split('\n').map(s => s.trim()).filter(Boolean)
+            : [];
+        const highlightsList = item.highlights || [];
 
-          let endDateFinal = 'Current'
-          if(endDate !== ''){
-            endDateFinal = months[new Date(endDate).getMonth()]
-            endDateFinal += ' ' + new Date(endDate).getFullYear()
-          }
-          const years = `${months[startMonth]} ${startYear} - ${endDateFinal}`
+        return (
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
 
-          const summaryArray = Array.isArray(summary) ? summary : []
-
-          return (
-            <li>
-              <article>
-                <header>
-                  <div>
-                    <h3>
-                      <a href={url} title={`See ${name}`} target="_blank">
-                        {name}
-                      </a>
+            <div class="item-content">
+              <header class="item-header">
+                <div class="header-main">
+                  <div class="company-row">
+                    <h3 class="company-name">
+                      {item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" class="company-link">
+                          <span>{item.name}</span>
+                          <i class="ti ti-arrow-up-right link-icon"></i>
+                        </a>
+                      ) : (
+                        <span>{item.name}</span>
+                      )}
                     </h3>
-                    <h4>{jobPosition}</h4>
+                    {item.country && <span class="country-badge">{item.country}</span>}
                   </div>
+                  <h4 class="job-position">{item.jobPosition}</h4>
+                </div>
 
-                  <time>{years}</time>
-                </header>
+                <time class="period-badge">{period}</time>
+              </header>
 
-                <footer>
-                  <ul class="summary">
-                  {summaryArray.map(summaryItem => (
-                    <li>{summaryItem}</li>
+              {highlightsList.length > 0 && (
+                <div class="item-tags no-print">
+                  {highlightsList.map((tag) => (
+                    <span class="tech-tag">{tag}</span>
                   ))}
-                  </ul>
-                </footer>
-              </article>
-            </li>
-          )
-        }
-      )
+                </div>
+              )}
+
+              {summaryList.length > 0 && (
+                <ul class="summary-list">
+                  {summaryList.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </article>
+        );
+      })
     }
-  </ul>
+  </div>
 </Section>
 
 <style>
-  ul {
+  .timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 1.75rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--color-border);
   }
 
-  article h3 {
-    font-weight: 500;
-    color: #111;
+  .timeline-item {
+    position: relative;
   }
 
-  article a {
-    color: #111;
+  .timeline-dot {
+    position: absolute;
+    left: calc(-1.25rem - 4.5px);
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid var(--color-text-muted);
+    transition: all 0.2s ease;
   }
 
-  article a:hover {
-    text-decoration: underline;
+  .timeline-item:hover .timeline-dot {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    transform: scale(1.2);
   }
 
-  article h4 {
-    color: #222;
-    font-weight: 400;
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  header {
+  .item-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 4px;
+    gap: 1rem;
   }
 
-  time {
-    color: #555;
-    font-size: 0.85rem;
-    min-width: 102px;
+  .header-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
-  footer {
-    margin-top: 1rem;
-  }
-
-  footer ul.summary {
-    list-style: '- ';
+  .company-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    margin-left: 1.5rem;
   }
 
-  footer li {
-    font-size: 13px;
+  .company-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-text-primary);
   }
 
-  @media (width <= 700px) {
-    time {
-      text-align: right;
+  .company-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .company-link:hover {
+    color: var(--color-accent);
+  }
+
+  .link-icon {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .company-link:hover .link-icon {
+    transform: translate(1px, -1px);
+    opacity: 1;
+  }
+
+  .country-badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.1rem 0.4rem;
+    border-radius: 9999px;
+    background: var(--color-surface-subtle);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .job-position {
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .period-badge {
+    font-size: 0.775rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+  }
+
+  .item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.15rem;
+  }
+
+  .tech-tag {
+    font-size: 0.725rem;
+    font-weight: 500;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    border: 1px solid var(--color-tag-border);
+  }
+
+  .summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin: 0.25rem 0 0;
+    padding-left: 1.15rem;
+    list-style: disc;
+  }
+
+  .summary-list li {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 600px) {
+    .item-header {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .period-badge {
+      align-self: flex-start;
+    }
+  }
+
+  @media print {
+    .timeline {
+      padding-left: 0;
+      border-left: none;
+      gap: 1rem;
+    }
+
+    .timeline-dot {
+      display: none;
+    }
+
+    .timeline-item {
+      break-inside: avoid;
+    }
+
+    .company-name {
+      font-size: 0.95rem;
+      color: #000;
+    }
+
+    .job-position {
+      font-size: 0.85rem;
+      color: #222;
+    }
+
+    .period-badge {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: #555;
+    }
+
+    .summary-list li {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #333;
     }
   }
 </style>

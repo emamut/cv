@@ -13,7 +13,6 @@ interface Profile {
 const profiles: Profile[] = await getProfiles()
 
 const { lng } = Astro.props
-const basePath = Astro.url.origin;
 
 const translations = lng === 'en'
   ? {
@@ -22,7 +21,7 @@ const translations = lng === 'en'
       visit: "Visit",
       search: "Search command...",
       translateText: "Switch to Spanish",
-      translateLink: basePath + "/esp",
+      translateLink: "/esp/",
       themeText: "Toggle Dark/Light Mode"
     }
   : {
@@ -31,7 +30,7 @@ const translations = lng === 'en'
       visit: "Visitar",
       search: "Buscar comando...",
       translateText: "Cambiar a Inglés",
-      translateLink: basePath + "/",
+      translateLink: "/",
       themeText: "Alternar Modo Claro / Oscuro"
     }
 
@@ -114,7 +113,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       id: "translate",
       title: translations.translateText,
       icon: `<i class="ti ti-language"></i>`,
-      hotkey: "ctrl+L",
+      hotkey: "ctrl+E",
       section: "Actions",
       handler: () => {
         window.location.href = translations.translateLink;
@@ -124,7 +123,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       id: "theme",
       title: translations.themeText,
       icon: `<i class="ti ti-sun"></i>`,
-      hotkey: "ctrl+T",
+      hotkey: "ctrl+D",
       section: "Actions",
       handler: () => {
         const isDark = document.documentElement.classList.contains('dark');
@@ -142,7 +141,15 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
 
   const footerButton = document.getElementById("footer-button")
   footerButton?.addEventListener("click", () => {
-    hotkeypad.open();
+    const event = new KeyboardEvent("keydown", {
+      key: "K",
+      code: "KeyK",
+      keyCode: 75,
+      which: 75,
+      ctrlKey: true,
+      bubbles: true,
+    })
+    document.dispatchEvent(event)
   })
 </script>
 

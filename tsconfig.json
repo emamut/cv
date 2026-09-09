@@ -7,5 +7,6 @@
       "@cvEn": ["./cv_english.json"],
       "@/*": ["src/*"]
     }
-  }
+  },
+  "exclude": ["dist"]
 }

@@ -1,28 +1,30 @@
 import { GraphQLClient } from 'graphql-request';
 
 const endpoint = 'https://graphql.datocms.com/';
-const token = import.meta.env.DATOCMS_API_TOKEN;
 
-const client = token
-  ? new GraphQLClient(endpoint, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-  : null;
+function getClient() {
+  const token =
+    import.meta.env.DATOCMS_API_TOKEN ||
+    process.env.DATOCMS_API_TOKEN ||
+    import.meta.env.DATOCMS_TOKEN ||
+    process.env.DATOCMS_TOKEN;
 
-const defaultBasics = {
-  name: "Faber Andrés Vergara Holguín",
-  email: "fabervergara@gmail.com",
-  label: "Front End Developer + Speaker",
-  phone: "+57 3160414585",
-  summary: "Desarrollador web con más de una década de experiencia especializado en tecnologías frontend modernas.",
-  city: "Bogotá",
-  country: "Colombia"
-};
+  if (!token) {
+    console.warn(
+      '⚠️ [DatoCMS] DATOCMS_API_TOKEN is not defined in environment variables or .env'
+    );
+  }
+
+  return new GraphQLClient(endpoint, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+const client = getClient();
 
 export async function getBasic(lang = 'en') {
-  if (!client) return defaultBasics;
   const query = `query MyQuery {
     basic(locale: ${lang}) {
       name
@@ -35,39 +37,11 @@ export async function getBasic(lang = 'en') {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.basic || defaultBasics;
-  } catch (e) {
-    console.error(`Error fetching basic from DatoCMS (${lang}):`, e);
-    return defaultBasics;
-  }
+  const data = await client.request(query);
+  return data.basic;
 }
 
 export async function getProfiles() {
-  if (!client) {
-    return [
-      {
-        network: "LinkedIn",
-        icon: "linkedin",
-        username: "emamut",
-        url: "https://linkedin.com/in/emamut"
-      },
-      {
-        network: "GitHub",
-        icon: "github",
-        username: "emamut",
-        url: "https://github.com/emamut"
-      },
-      {
-        network: "X",
-        icon: "x",
-        username: "e_mamut",
-        url: "https://x.com/e_mamut"
-      }
-    ];
-  }
-
   const query = `query MyQuery {
     allProfiles(orderBy: position_DESC) {
       network
@@ -77,17 +51,11 @@ export async function getProfiles() {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.allProfiles || [];
-  } catch (e) {
-    console.error("Error fetching profiles from DatoCMS:", e);
-    return [];
-  }
+  const data = await client.request(query);
+  return data.allProfiles;
 }
 
 export async function getExperiences(lang = 'en') {
-  if (!client) return [];
   const query = `query MyQuery {
     allExperiences(orderBy: position_ASC, locale: ${lang}) {
       name
@@ -101,17 +69,11 @@ export async function getExperiences(lang = 'en') {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.allExperiences || [];
-  } catch (e) {
-    console.error(`Error fetching experiences from DatoCMS (${lang}):`, e);
-    return [];
-  }
+  const data = await client.request(query);
+  return data.allExperiences;
 }
 
 export async function getEducations(lang = 'en') {
-  if (!client) return [];
   const query = `query MyQuery {
     allEducations(locale: ${lang}, orderBy: position_ASC) {
       institution
@@ -122,17 +84,11 @@ export async function getEducations(lang = 'en') {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.allEducations || [];
-  } catch (e) {
-    console.error(`Error fetching educations from DatoCMS (${lang}):`, e);
-    return [];
-  }
+  const data = await client.request(query);
+  return data.allEducations;
 }
 
 export async function getProjects(lang = 'en') {
-  if (!client) return [];
   const query = `query MyQuery {
     allProjects(orderBy: position_ASC, locale: ${lang}) {
       name
@@ -143,17 +99,11 @@ export async function getProjects(lang = 'en') {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.allProjects || [];
-  } catch (e) {
-    console.error(`Error fetching projects from DatoCMS (${lang}):`, e);
-    return [];
-  }
+  const data = await client.request(query);
+  return data.allProjects;
 }
 
 export async function getSkills(lang = 'en') {
-  if (!client) return [];
   const query = `query MyQuery {
     allSkills(locale: ${lang}, orderBy: position_ASC) {
       name
@@ -163,12 +113,7 @@ export async function getSkills(lang = 'en') {
     }
   }`;
 
-  try {
-    const data = await client.request(query);
-    return data.allSkills || [];
-  } catch (e) {
-    console.error(`Error fetching skills from DatoCMS (${lang}):`, e);
-    return [];
-  }
+  const data = await client.request(query);
+  return data.allSkills;
 }
 

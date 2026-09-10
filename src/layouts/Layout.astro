@@ -7,11 +7,8 @@ interface Props {
 
 import HeaderNav from '../components/HeaderNav.astro';
 import '@tabler/icons-webfont/dist/tabler-icons.min.css';
-import { getBasic } from '../lib/datocms';
-
-const { title, description, lang = 'en' } = Astro.props;
-const basics = await getBasic(lang);
-const metaDescription = description || basics.summary;
+const { title, description = '', lang = 'en' } = Astro.props;
+const metaDescription = description;
 const url = Astro.request.url;
 ---
 

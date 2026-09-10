@@ -29,13 +29,13 @@ const skills = await getSkills(lang)
 ---
 
 <Layout
-  title={`Hoja de Vida | ${basics.name} - ${basics.label}`}
-  description={basics.summary}
+  title={`Hoja de Vida | ${basics?.name || 'Faber Andrés Vergara Holguín'} - ${basics?.label || 'Front End Developer'}`}
+  description={basics?.summary || ''}
   lang={lang}
 >
   <main class="cv-container">
-    <Hero basics={basics} profiles={profiles} />
-    <About summary={basics.summary} title="Sobre mí" />
+    <Hero basics={basics} profiles={profiles} lang={lang} />
+    <About summary={basics?.summary || ''} title="Sobre mí" />
     <Experience work={work} title="Experiencia Laboral" />
     <Education education={education} title="Educación & Certificaciones" />
     <Projects projects={projects} title="Proyectos Destacados" />

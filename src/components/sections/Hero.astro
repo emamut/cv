@@ -3,38 +3,43 @@ import { Image } from "astro:assets"
 import gravatarUrl from 'gravatar-url';
 import Section from "@/components/Section.astro"
 
-const { basics, profiles } = Astro.props;
-const imageURL = basics.image || gravatarUrl(basics.email, { size: 256 });
+const { basics = {}, profiles = [], lang = "en" } = Astro.props;
+const imageURL = basics?.image || (basics?.email ? gravatarUrl(basics.email, { size: 256 }) : "");
 
-const linkedInfo = profiles.find(({ network }: { network: string }) => network.toLowerCase() === "linkedin");
-const githubInfo = profiles.find(({ network }: { network: string }) => network.toLowerCase() === "github");
+const linkedInfo = (profiles || []).find(({ network }: { network: string }) => network?.toLowerCase() === "linkedin");
+const githubInfo = (profiles || []).find(({ network }: { network: string }) => network?.toLowerCase() === "github");
+
+const locationText = [basics?.city, basics?.country].filter(Boolean).join(", ");
 
 const printInfo = [
-  basics.email,
-  basics.phone,
-  basics.city ? `${basics.city}, ${basics.country}` : basics.country,
+  basics?.email,
+  basics?.phone,
+  locationText,
   linkedInfo?.url?.replace('https://', ''),
   githubInfo?.url?.replace('https://', '')
 ].filter(Boolean).join("  •  ");
+
+const statusText = basics?.status || (lang === "es" ? "Disponible para nuevas oportunidades" : "Available for new opportunities");
+const callText = lang === "es" ? "Llamar" : "Call";
 ---
 
 <Section className="hero-section">
   <div class="hero-container">
     <div class="hero-info">
-      {basics.status && (
-        <div class="status-badge no-print">
-          <span class="status-indicator"></span>
-          <span>{basics.status}</span>
+      <div class="status-badge no-print" title={statusText}>
+        <span class="status-indicator"></span>
+        <span>{statusText}</span>
+      </div>
+
+      <h1 class="hero-name">{basics?.name}</h1>
+      <h2 class="hero-label">{basics?.label}</h2>
+
+      {locationText && (
+        <div class="hero-location">
+          <i class="ti ti-map-pin"></i>
+          <span>{locationText}</span>
         </div>
       )}
-
-      <h1 class="hero-name">{basics.name}</h1>
-      <h2 class="hero-label">{basics.label}</h2>
-
-      <div class="hero-location">
-        <i class="ti ti-map-pin"></i>
-        <span>{basics.city}, {basics.country}</span>
-      </div>
 
       <!-- Clean ATS Print Info -->
       <div class="hero-print-info print">
@@ -43,7 +48,7 @@ const printInfo = [
 
       <!-- Interactive Contact Actions -->
       <div class="hero-actions no-print">
-        {basics.email && (
+        {basics?.email && (
           <a
             href={`mailto:${basics.email}`}
             title={`Email: ${basics.email}`}
@@ -54,18 +59,18 @@ const printInfo = [
           </a>
         )}
 
-        {basics.phone && (
+        {basics?.phone && (
           <a
             href={`tel:${basics.phone}`}
             title={`Phone: ${basics.phone}`}
             class="action-pill"
           >
             <i class="ti ti-phone"></i>
-            <span class="pill-text">Llamar</span>
+            <span class="pill-text">{callText}</span>
           </a>
         )}
 
-        {profiles.map(({ network, icon, url }: { network: string; icon: string; url: string }) => {
+        {(profiles || []).map(({ network, icon, url }: { network: string; icon: string; url: string }) => {
           return (
             <a
               href={url}
@@ -84,16 +89,18 @@ const printInfo = [
 
     <div class="hero-avatar-wrapper">
       <div class="hero-avatar-container">
-        <Image
-          src={imageURL}
-          alt={basics.name}
-          width={120}
-          height={120}
-          loading="eager"
-          decoding="async"
-          class="hero-avatar"
-        />
-        <div class="avatar-badge no-print" title="Online / Disponible">
+        {imageURL && (
+          <Image
+            src={imageURL}
+            alt={basics?.name || "Avatar"}
+            width={120}
+            height={120}
+            loading="eager"
+            decoding="async"
+            class="hero-avatar"
+          />
+        )}
+        <div class="avatar-badge no-print" title={statusText}>
           <span class="avatar-dot"></span>
         </div>
       </div>

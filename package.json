@@ -10,14 +10,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
+    "@astrojs/check": "^0.9.10",
     "@astrojs/partytown": "^2.1.7",
-    "@tabler/icons-webfont": "^3.45.0",
-    "astro": "4.3.2",
+    "@tabler/icons-webfont": "^3.47.0",
+    "astro": "7.3.3",
     "graphql": "^16.14.2",
     "graphql-request": "^7.4.0",
     "gravatar-url": "^4.0.2",
     "hotkeypad": "0.1.0",
     "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.34.5",
+  "pnpm": {
+    "overrides": {
+      "@tabler/icons-webfont>svgtofont": "-"
+    }
   }
 }

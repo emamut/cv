@@ -87,13 +87,16 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
   const translationsData = hotkeypadElement?.getAttribute("data-translations") ?? "{}";
   const translations = JSON.parse(translationsData);
 
+  const modKey = (hotkeypad.activationKey ?? "ctrl").toLowerCase();
+
   const data = parsedInfo.map(
     ({ url, hotkey, icon, id, section, title }) => {
+      const letter = hotkey.split("+").pop() ?? "";
       return {
         id,
         title,
         icon,
-        hotkey,
+        hotkey: `${modKey}+${letter}`,
         section,
         handler: () => {
           window.open(url, "_blank")
@@ -107,7 +110,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       id: "print",
       title: translations.print,
       icon: `<i class="ti ti-file-download"></i>`,
-      hotkey: "ctrl+P",
+      hotkey: `${modKey}+P`,
       section: "Actions",
       handler: () => {
         const link = document.createElement('a');
@@ -123,7 +126,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       id: "translate",
       title: translations.translateText,
       icon: `<i class="ti ti-language"></i>`,
-      hotkey: "ctrl+E",
+      hotkey: `${modKey}+E`,
       section: "Actions",
       handler: () => {
         window.location.href = translations.translateLink;
@@ -133,7 +136,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
       id: "theme",
       title: translations.themeText,
       icon: `<i class="ti ti-sun"></i>`,
-      hotkey: "ctrl+D",
+      hotkey: `${modKey}+D`,
       section: "Actions",
       handler: () => {
         const isDark = document.documentElement.classList.contains('dark');
@@ -151,15 +154,7 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
 
   const footerButton = document.getElementById("footer-button")
   footerButton?.addEventListener("click", () => {
-    const event = new KeyboardEvent("keydown", {
-      key: "K",
-      code: "KeyK",
-      keyCode: 75,
-      which: 75,
-      ctrlKey: true,
-      bubbles: true,
-    })
-    document.dispatchEvent(event)
+    hotkeypad.open();
   })
 </script>
 
@@ -217,13 +212,52 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     border-bottom: 1px solid var(--color-border) !important;
   }
 
-  :global(#hotkeypad [data-item]) {
+  :global(#hotkeypad [data-hotkey]) {
     color: var(--color-text-secondary) !important;
     border-radius: var(--radius-sm) !important;
+    transition: background-color 0.15s ease !important;
   }
 
-  :global(#hotkeypad [data-item][data-selected]) {
+  :global(#hotkeypad [data-hotkey][data-active]) {
     background: var(--color-surface-subtle) !important;
+    color: var(--color-text-primary) !important;
+  }
+
+  :global(#hotkeypad [data-hotkey] p) {
+    color: inherit !important;
+  }
+
+  :global(#hotkeypad [data-hotkey] div) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+  }
+
+  :global(#hotkeypad [data-hotkey] div span) {
+    width: auto !important;
+    min-width: 1.5rem !important;
+    height: 1.5rem !important;
+    padding: 0 0.45rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--color-kbd-bg) !important;
+    border: 1px solid var(--color-kbd-border) !important;
+    color: var(--color-text-muted) !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 0.75rem !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+    text-transform: capitalize !important;
+  }
+
+  :global(#hotkeypad [data-hotkey]:hover div span),
+  :global(#hotkeypad [data-hotkey][data-active] div span) {
+    background: var(--color-surface) !important;
+    border-color: var(--color-border-hover) !important;
     color: var(--color-text-primary) !important;
   }
 

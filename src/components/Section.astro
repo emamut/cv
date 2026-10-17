@@ -58,21 +58,28 @@ const { title, className = "" } = Astro.props;
 
   @media print {
     .cv-section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.85rem;
       break-inside: auto;
     }
 
     .section-header {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.35rem;
+      display: block;
+      border-bottom: 1.5px solid #000;
+      padding-bottom: 1px;
     }
 
     h2 {
-      font-size: 1.1rem;
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: normal;
       color: #000;
+      break-after: avoid;
     }
 
     .section-divider {
-      background: #e2e8f0;
+      display: none !important;
     }
   }
 </style>

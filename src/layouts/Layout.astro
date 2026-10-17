@@ -48,6 +48,8 @@ const url = Astro.request.url;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <meta name="author" content="Faber Andrés Vergara Holguín" />
+
     <!-- Open Graph / SEO -->
     <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
@@ -204,17 +206,60 @@ const url = Astro.request.url;
 
   @media print {
     @page {
-      margin: 12mm 14mm 12mm 14mm;
+      margin: 10mm 14mm;
       size: A4 portrait;
+    }
+
+    *,
+    *::before,
+    *::after {
+      font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      letter-spacing: normal !important;
+      word-spacing: normal !important;
+      font-variant: normal !important;
+      font-variant-ligatures: none !important;
+      font-variant-numeric: normal !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
     html, body {
       background: #ffffff !important;
       color: #000000 !important;
-      font-size: 11pt;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      letter-spacing: normal !important;
     }
 
-    .no-print {
+    .no-print,
+    header.navbar,
+    #normal-footer,
+    #footer-button,
+    #hotkeypad,
+    astro-dev-toolbar,
+    .status-badge,
+    .status-indicator,
+    .status-dot,
+    .avatar-badge,
+    .avatar-dot,
+    .active-dot,
+    .timeline-dot,
+    .link-icon,
+    .project-icon,
+    .cat-icon,
+    .skill-icon,
+    .hero-location,
+    i[class^="ti-"],
+    i[class*=" ti-"],
+    .ti {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    .hero-avatar-wrapper,
+    .hero-avatar-container,
+    .hero-avatar {
       display: none !important;
     }
 
@@ -222,17 +267,29 @@ const url = Astro.request.url;
       display: block !important;
     }
 
-    astro-dev-toolbar {
-      display: none !important;
+    h1, h2, h3, h4, h5, h6 {
+      break-after: avoid;
+      page-break-after: avoid;
+      color: #000000 !important;
     }
 
-    article {
+    article,
+    .timeline-item,
+    .education-card,
+    .project-card,
+    .skill-category {
       break-inside: avoid;
       page-break-inside: avoid;
     }
 
-    section {
+    section,
+    .cv-section {
       break-inside: auto;
+    }
+
+    a {
+      color: inherit !important;
+      text-decoration: none !important;
     }
   }
 </style>

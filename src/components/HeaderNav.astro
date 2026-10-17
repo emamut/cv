@@ -8,7 +8,9 @@ const { currentLang } = Astro.props;
 const isEn = currentLang === 'en';
 const targetLangUrl = isEn ? '/esp/' : '/';
 const targetLangShort = isEn ? 'ES' : 'EN';
-const printLabel = isEn ? 'Print / PDF' : 'Imprimir / PDF';
+const pdfUrl = isEn ? '/cv-faber-vergara-en.pdf' : '/cv-faber-vergara-es.pdf';
+const pdfFilename = isEn ? 'Faber_Vergara_Resume.pdf' : 'Faber_Vergara_CV.pdf';
+const downloadLabel = isEn ? 'Download ATS Resume (PDF)' : 'Descargar Hoja de Vida ATS (PDF)';
 ---
 
 <header class="navbar no-print">
@@ -33,17 +35,19 @@ const printLabel = isEn ? 'Print / PDF' : 'Imprimir / PDF';
         <span class="lang-text">{targetLangShort}</span>
       </a>
 
-      <!-- Print / PDF Button -->
-      <button
-        type="button"
-        id="print-btn"
+      <!-- ATS PDF Direct Download Button -->
+      <a
+        href={pdfUrl}
+        download={pdfFilename}
         class="nav-btn"
-        title={printLabel}
-        aria-label={printLabel}
+        title={downloadLabel}
+        aria-label={downloadLabel}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <i class="ti ti-printer"></i>
-        <span class="btn-label">{isEn ? 'PDF' : 'PDF'}</span>
-      </button>
+        <i class="ti ti-file-download"></i>
+        <span class="btn-label">PDF</span>
+      </a>
 
       <!-- Theme Switcher -->
       <button
@@ -88,12 +92,6 @@ const printLabel = isEn ? 'Print / PDF' : 'Imprimir / PDF';
   themeToggleBtn?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.contains('dark');
     setTheme(isDark ? 'light' : 'dark');
-  });
-
-  // Print button
-  const printBtn = document.getElementById('print-btn');
-  printBtn?.addEventListener('click', () => {
-    window.print();
   });
 
   // Command palette button triggers Cmd+K

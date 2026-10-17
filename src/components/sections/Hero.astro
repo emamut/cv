@@ -11,14 +11,6 @@ const githubInfo = (profiles || []).find(({ network }: { network: string }) => n
 
 const locationText = [basics?.city, basics?.country].filter(Boolean).join(", ");
 
-const printInfo = [
-  basics?.email,
-  basics?.phone,
-  locationText,
-  linkedInfo?.url?.replace('https://', ''),
-  githubInfo?.url?.replace('https://', '')
-].filter(Boolean).join("  •  ");
-
 const statusText = basics?.status || (lang === "es" ? "Disponible para nuevas oportunidades" : "Available for new opportunities");
 const callText = lang === "es" ? "Llamar" : "Call";
 ---
@@ -35,7 +27,7 @@ const callText = lang === "es" ? "Llamar" : "Call";
       <h2 class="hero-label">{basics?.label}</h2>
 
       {locationText && (
-        <div class="hero-location">
+        <div class="hero-location no-print">
           <i class="ti ti-map-pin"></i>
           <span>{locationText}</span>
         </div>
@@ -43,7 +35,43 @@ const callText = lang === "es" ? "Llamar" : "Call";
 
       <!-- Clean ATS Print Info -->
       <div class="hero-print-info print">
-        {printInfo}
+        <div class="print-contact-list">
+          {basics?.email && (
+            <a href={`mailto:${basics.email}`} class="print-contact-item">
+              {basics.email}
+            </a>
+          )}
+          {basics?.phone && (
+            <>
+              <span class="print-sep">&nbsp;|&nbsp;</span>
+              <a href={`tel:${basics.phone}`} class="print-contact-item">
+                {basics.phone}
+              </a>
+            </>
+          )}
+          {locationText && (
+            <>
+              <span class="print-sep">&nbsp;|&nbsp;</span>
+              <span class="print-contact-item">{locationText}</span>
+            </>
+          )}
+          {linkedInfo?.url && (
+            <>
+              <span class="print-sep">&nbsp;|&nbsp;</span>
+              <a href={linkedInfo.url} target="_blank" rel="noopener noreferrer" class="print-contact-item">
+                {linkedInfo.url.replace(/^https?:\/\/(www\.)?/, '')}
+              </a>
+            </>
+          )}
+          {githubInfo?.url && (
+            <>
+              <span class="print-sep">&nbsp;|&nbsp;</span>
+              <a href={githubInfo.url} target="_blank" rel="noopener noreferrer" class="print-contact-item">
+                {githubInfo.url.replace(/^https?:\/\/(www\.)?/, '')}
+              </a>
+            </>
+          )}
+        </div>
       </div>
 
       <!-- Interactive Contact Actions -->
@@ -309,23 +337,59 @@ const callText = lang === "es" ? "Llamar" : "Call";
 
   @media print {
     .hero-container {
-      gap: 1rem;
+      display: block;
+      width: 100%;
+      margin: 0;
+      gap: 0;
+    }
+
+    .hero-info {
+      width: 100%;
+      gap: 0.2rem;
     }
 
     .hero-name {
-      font-size: 1.75rem;
+      font-size: 20pt;
+      font-weight: 800;
       color: #000;
+      line-height: 1.15;
+      margin-bottom: 2px;
     }
 
     .hero-label {
-      font-size: 1rem;
-      color: #333;
+      font-size: 11pt;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.3;
+      margin-bottom: 4px;
     }
 
-    .hero-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 12px;
+    .hero-avatar-wrapper {
+      display: none !important;
+    }
+
+    .hero-print-info {
+      font-size: 9pt;
+      color: #111;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    .print-contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .print-contact-item {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .print-sep {
+      color: #555;
+      font-size: 8pt;
     }
   }
 </style>

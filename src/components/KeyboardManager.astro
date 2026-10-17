@@ -17,7 +17,9 @@ const { lng } = Astro.props
 const translations = lng === 'en'
   ? {
       title: "Press <kbd>Cmd</kbd> + <kbd>K</kbd> to open command palette",
-      print: "Print / Save PDF",
+      print: "Download Resume (ATS PDF)",
+      pdfUrl: "/cv-faber-vergara-en.pdf",
+      pdfFilename: "Faber_Vergara_Resume.pdf",
       visit: "Visit",
       search: "Search command...",
       translateText: "Switch to Spanish",
@@ -26,7 +28,9 @@ const translations = lng === 'en'
     }
   : {
       title: 'Presiona <kbd>Cmd</kbd> + <kbd>K</kbd> para abrir el panel de comandos',
-      print: "Imprimir / Guardar PDF",
+      print: "Descargar Hoja de Vida (ATS PDF)",
+      pdfUrl: "/cv-faber-vergara-es.pdf",
+      pdfFilename: "Faber_Vergara_CV.pdf",
       visit: "Visitar",
       search: "Buscar comando...",
       translateText: "Cambiar a Inglés",
@@ -102,11 +106,17 @@ const profilesInfo = profiles.map(({ network, url, icon }) => {
     {
       id: "print",
       title: translations.print,
-      icon: `<i class="ti ti-printer"></i>`,
+      icon: `<i class="ti ti-file-download"></i>`,
       hotkey: "ctrl+P",
       section: "Actions",
       handler: () => {
-        window.print()
+        const link = document.createElement('a');
+        link.href = translations.pdfUrl;
+        link.download = translations.pdfFilename;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     },
     {

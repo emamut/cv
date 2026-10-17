@@ -146,31 +146,44 @@ const { education, title } = Astro.props;
 
   @media print {
     .education-list {
-      gap: 0.65rem;
+      gap: 0.55rem;
     }
 
     .education-card {
-      padding: 0.5rem 0.75rem;
-      border-color: #e2e8f0;
+      padding: 0;
+      border: none;
       box-shadow: none;
+      background: transparent;
       break-inside: avoid;
     }
 
     .institution-name {
-      font-size: 0.9rem;
+      font-size: 9.5pt;
+      font-weight: 700;
       color: #000;
     }
 
+    .institution-link {
+      color: #000;
+    }
+
+    .link-icon {
+      display: none !important;
+    }
+
     .education-area {
-      font-size: 0.8rem;
-      color: #333;
+      font-size: 9pt;
+      font-weight: 500;
+      color: #222;
     }
 
     .period-badge {
       background: transparent;
       border: none;
       padding: 0;
-      color: #555;
+      color: #444;
+      font-size: 8.5pt;
+      font-weight: 500;
     }
   }
 </style>

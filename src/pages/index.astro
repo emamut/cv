@@ -35,11 +35,11 @@ const skills = await getSkills(lang)
 >
   <main class="cv-container">
     <Hero basics={basics} profiles={profiles} lang={lang} />
-    <About summary={basics?.summary || ''} title="About Me" />
+    <About summary={basics?.summary || ''} title="Professional Summary" />
     <Experience work={work} title="Work Experience" />
     <Education education={education} title="Education & Certifications" />
-    <Projects projects={projects} title="Featured Projects" />
-    <Skills skills={skills} title="Skills & Technologies" />
+    <Projects projects={projects} title="Projects" />
+    <Skills skills={skills} title="Technical Skills" />
   </main>
 
   <KeyboardManager lng={lang} />

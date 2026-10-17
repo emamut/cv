@@ -4,9 +4,9 @@ const endpoint = 'https://graphql.datocms.com/';
 
 function getClient() {
   const token =
-    import.meta.env.DATOCMS_API_TOKEN ||
+    import.meta.env?.DATOCMS_API_TOKEN ||
     process.env.DATOCMS_API_TOKEN ||
-    import.meta.env.DATOCMS_TOKEN ||
+    import.meta.env?.DATOCMS_TOKEN ||
     process.env.DATOCMS_TOKEN;
 
   if (!token) {
@@ -75,7 +75,7 @@ export async function getExperiences(lang = 'en') {
 
 export async function getEducations(lang = 'en') {
   const query = `query MyQuery {
-    allEducations(locale: ${lang}, orderBy: position_ASC) {
+    allEducations(locale: ${lang}, orderBy: startDate_DESC) {
       institution
       area
       startDate

@@ -86,6 +86,13 @@ function formatPeriod(start: string, end: string | null | undefined): string {
                 </div>
               )}
 
+              {highlightsList.length > 0 && (
+                <div class="item-highlights-print print">
+                  <span class="highlights-label">{isSpanish ? 'Tecnologías: ' : 'Technologies: '}</span>
+                  <span class="highlights-text">{highlightsList.join(', ')}</span>
+                </div>
+              )}
+
               {summaryList.length > 0 && (
                 <ul class="summary-list">
                   {summaryList.map((bullet) => (
@@ -266,24 +273,58 @@ function formatPeriod(start: string, end: string | null | undefined): string {
     .timeline {
       padding-left: 0;
       border-left: none;
-      gap: 1rem;
+      gap: 0.55rem;
     }
 
     .timeline-dot {
-      display: none;
+      display: none !important;
     }
 
     .timeline-item {
       break-inside: avoid;
     }
 
+    .item-header {
+      margin-bottom: 0.1rem;
+      align-items: baseline;
+    }
+
+    .company-row {
+      display: inline;
+    }
+
     .company-name {
-      font-size: 0.95rem;
+      display: inline;
+      font-size: 10pt;
+      font-weight: 700;
       color: #000;
     }
 
+    .company-link {
+      color: #000;
+    }
+
+    .link-icon {
+      display: none !important;
+    }
+
+    .country-badge {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      color: #444 !important;
+      font-size: 8.5pt !important;
+      font-weight: 400 !important;
+    }
+
+    .country-badge::before {
+      content: "\00a0|\00a0";
+      color: #777;
+    }
+
     .job-position {
-      font-size: 0.85rem;
+      font-size: 9.5pt;
+      font-weight: 600;
       color: #222;
     }
 
@@ -291,13 +332,33 @@ function formatPeriod(start: string, end: string | null | undefined): string {
       background: transparent;
       border: none;
       padding: 0;
-      color: #555;
+      color: #444;
+      font-size: 8.5pt;
+      font-weight: 500;
+    }
+
+    .item-highlights-print {
+      font-size: 8.5pt;
+      color: #333;
+      margin: 0.1rem 0;
+      line-height: 1.35;
+    }
+
+    .highlights-label {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .summary-list {
+      margin: 0.15rem 0 0;
+      padding-left: 1.15rem;
+      list-style-type: disc !important;
     }
 
     .summary-list li {
-      font-size: 0.8rem;
+      font-size: 8.5pt;
       line-height: 1.4;
-      color: #333;
+      color: #111;
     }
   }
 </style>

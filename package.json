@@ -24,7 +24,9 @@
   "packageManager": "pnpm@12.18.0",
   "pnpm": {
     "overrides": {
-      "@tabler/icons-webfont>svgtofont": "-"
+      "@tabler/icons-webfont>svgtofont": "-",
+      "@emnapi/runtime": "1.11.3",
+      "@emnapi/core": "1.11.3"
     }
   }
 }

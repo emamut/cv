@@ -5,5 +5,7 @@ allowBuilds:
   sharp: true
 overrides:
   "@tabler/icons-webfont>svgtofont": "-"
+  "@emnapi/runtime": "1.11.3"
+  "@emnapi/core": "1.11.3"
 
 

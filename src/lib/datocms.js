@@ -10,8 +10,8 @@ function getClient() {
     process.env.DATOCMS_TOKEN;
 
   if (!token) {
-    console.warn(
-      '⚠️ [DatoCMS] DATOCMS_API_TOKEN is not defined in environment variables or .env'
+    throw new Error(
+      '⚠️ [DatoCMS] Falta la variable de entorno DATOCMS_API_TOKEN. Crea un archivo .env en la raíz del proyecto y define: DATOCMS_API_TOKEN=tu_token'
     );
   }
 
@@ -22,7 +22,22 @@ function getClient() {
   });
 }
 
-const client = getClient();
+async function executeQuery(query) {
+  const client = getClient();
+  try {
+    return await client.request(query);
+  } catch (error) {
+    if (
+      error?.response?.status === 401 ||
+      error?.message?.includes('INVALID_AUTHORIZATION_HEADER')
+    ) {
+      throw new Error(
+        '⚠️ [DatoCMS] Error 401 (INVALID_AUTHORIZATION_HEADER): El token DATOCMS_API_TOKEN en tu archivo .env no es válido o no tiene permisos. Verifica tu API Token en el panel de DatoCMS (Settings > API tokens).'
+      );
+    }
+    throw error;
+  }
+}
 
 export async function getBasic(lang = 'en') {
   const query = `query MyQuery {
@@ -37,7 +52,7 @@ export async function getBasic(lang = 'en') {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.basic;
 }
 
@@ -51,7 +66,7 @@ export async function getProfiles() {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.allProfiles;
 }
 
@@ -69,7 +84,7 @@ export async function getExperiences(lang = 'en') {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.allExperiences;
 }
 
@@ -84,7 +99,7 @@ export async function getEducations(lang = 'en') {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.allEducations;
 }
 
@@ -99,7 +114,7 @@ export async function getProjects(lang = 'en') {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.allProjects;
 }
 
@@ -113,7 +128,7 @@ export async function getSkills(lang = 'en') {
     }
   }`;
 
-  const data = await client.request(query);
+  const data = await executeQuery(query);
   return data.allSkills;
 }
 

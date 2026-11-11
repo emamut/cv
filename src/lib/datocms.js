@@ -22,10 +22,45 @@ function getClient() {
   });
 }
 
+function formatFrontEnd(match, offset, fullString) {
+  if (match === match.toUpperCase() && match.length > 2) {
+    return 'FRONT-END';
+  }
+  const before = fullString.slice(0, offset).trimEnd();
+  const isStartOfSentence = before.length === 0 || /[.!?]\s*$/.test(before);
+  const startsWithUpper = match[0] === match[0].toUpperCase();
+
+  if (isStartOfSentence || startsWithUpper) {
+    return 'Front-end';
+  }
+  return 'front-end';
+}
+
+function normalizeFrontEnd(val, key = '') {
+  if (key === 'url' || key === 'icon' || key === 'image' || key === 'email') {
+    return val;
+  }
+  if (typeof val === 'string') {
+    return val.replace(/\bfront[- ]?end\b/gi, formatFrontEnd);
+  }
+  if (Array.isArray(val)) {
+    return val.map((item) => normalizeFrontEnd(item, key));
+  }
+  if (val !== null && typeof val === 'object') {
+    const res = {};
+    for (const [k, v] of Object.entries(val)) {
+      res[k] = normalizeFrontEnd(v, k);
+    }
+    return res;
+  }
+  return val;
+}
+
 async function executeQuery(query) {
   const client = getClient();
   try {
-    return await client.request(query);
+    const data = await client.request(query);
+    return normalizeFrontEnd(data);
   } catch (error) {
     if (
       error?.response?.status === 401 ||

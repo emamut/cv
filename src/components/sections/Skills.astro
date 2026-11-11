@@ -17,19 +17,19 @@ const { skills, title } = Astro.props;
 const isSpanish = title.toLowerCase().includes('habilidades');
 
 const categoryMap: Record<string, string> = {
-  HTML: 'Frontend',
-  HTML5: 'Frontend',
-  CSS: 'Frontend',
-  CSS3: 'Frontend',
-  SASS: 'Frontend',
-  Tailwind: 'Frontend',
-  'Tailwind CSS': 'Frontend',
-  JavaScript: 'Frontend',
-  TypeScript: 'Frontend',
-  React: 'Frontend',
-  Vue: 'Frontend',
-  'Vue.js': 'Frontend',
-  'Next.js': 'Frontend',
+  HTML: 'Front-end',
+  HTML5: 'Front-end',
+  CSS: 'Front-end',
+  CSS3: 'Front-end',
+  SASS: 'Front-end',
+  Tailwind: 'Front-end',
+  'Tailwind CSS': 'Front-end',
+  JavaScript: 'Front-end',
+  TypeScript: 'Front-end',
+  React: 'Front-end',
+  Vue: 'Front-end',
+  'Vue.js': 'Front-end',
+  'Next.js': 'Front-end',
   Node: 'Backend & CMS',
   'Node.js': 'Backend & CMS',
   PHP: 'Backend & CMS',
@@ -43,30 +43,30 @@ const categoryMap: Record<string, string> = {
 };
 
 const categoryLabels: Record<string, { en: string; es: string; icon: string }> = {
-  'Frontend': { en: 'Frontend & UI', es: 'Frontend & UI', icon: 'ti-code' },
+  'Front-end': { en: 'Front-end & UI', es: 'Front-end & UI', icon: 'ti-code' },
   'Backend & CMS': { en: 'Backend & CMS', es: 'Backend & CMS', icon: 'ti-server' },
   'Cloud & DevOps': { en: 'Cloud & Infrastructure', es: 'Cloud e Infraestructura', icon: 'ti-cloud' },
   'Tools': { en: 'Tools & Workflow', es: 'Herramientas & Flujo', icon: 'ti-tools' },
 };
 
 // Group skills into predefined categories in order
-const categoryOrder = ['Frontend', 'Backend & CMS', 'Cloud & DevOps', 'Tools'];
+const categoryOrder = ['Front-end', 'Backend & CMS', 'Cloud & DevOps', 'Tools'];
 const groupedSkills: Record<string, SkillItem[]> = {
-  'Frontend': [],
+  'Front-end': [],
   'Backend & CMS': [],
   'Cloud & DevOps': [],
   'Tools': [],
 };
 
 skills.forEach((skill) => {
-  const cat = skill.category || categoryMap[skill.name] || 'Frontend';
+  const cat = skill.category || categoryMap[skill.name] || 'Front-end';
   const normalizedCat = cat.toLowerCase().includes('backend')
     ? 'Backend & CMS'
     : cat.toLowerCase().includes('cloud') || cat.toLowerCase().includes('devops')
       ? 'Cloud & DevOps'
       : cat.toLowerCase().includes('tool') || cat.toLowerCase().includes('herramienta')
         ? 'Tools'
-        : 'Frontend';
+        : 'Front-end';
 
   if (!groupedSkills[normalizedCat]) {
     groupedSkills[normalizedCat] = [];

@@ -12,7 +12,18 @@ const githubInfo = (profiles || []).find(({ network }: { network: string }) => n
 const locationText = [basics?.city, basics?.country].filter(Boolean).join(", ");
 
 const statusText = basics?.status || (lang === "es" ? "Disponible para nuevas oportunidades" : "Available for new opportunities");
-const callText = lang === "es" ? "Llamar" : "Call";
+
+const cleanPhone = basics?.phone ? basics.phone.replace(/[^0-9]/g, "") : "";
+const firstName = basics?.name?.trim().split(/\s+/)[0] || "";
+const defaultGreeting = firstName
+  ? (lang === "es" ? `Hola ${firstName}` : `Hi ${firstName}`)
+  : (lang === "es" ? "Hola" : "Hello");
+const whatsappMessage = lang === "es"
+  ? `${defaultGreeting}, vi tu perfil profesional y me gustaría ponerme en contacto contigo.`
+  : `${defaultGreeting}, I saw your profile and would like to get in touch.`;
+const whatsappUrl = cleanPhone
+  ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappMessage)}`
+  : "";
 ---
 
 <Section className="hero-section">
@@ -87,14 +98,17 @@ const callText = lang === "es" ? "Llamar" : "Call";
           </a>
         )}
 
-        {basics?.phone && (
+        {basics?.phone && whatsappUrl && (
           <a
-            href={`tel:${basics.phone}`}
-            title={`Phone: ${basics.phone}`}
+            href={whatsappUrl}
+            title={`WhatsApp: ${basics.phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
             class="action-pill"
+            aria-label="WhatsApp"
           >
-            <i class="ti ti-phone"></i>
-            <span class="pill-text">{callText}</span>
+            <i class="ti ti-brand-whatsapp"></i>
+            <span class="pill-text">WhatsApp</span>
           </a>
         )}
 
